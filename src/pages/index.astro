@@ -1,7 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getArticles }  from '../lib/spaceflight.ts';
+
+
+const articles = await getArticles();
+
 ---
 
 <Layout>
-  <h1>Homepage or sum</h1>
+  <section class="articles">
+
+  {articles.map((article) => (
+  <article class="article-card">
+
+      <h1>{article.title}</h1>
+      <p>{article.summary}</p>
+    </article>
+  ))}
+
+  </section>
 </Layout>
