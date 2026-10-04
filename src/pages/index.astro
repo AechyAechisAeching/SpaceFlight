@@ -8,15 +8,14 @@ const articles = await getArticles();
 ---
 
 <Layout>
-  <section class="articles">
 
+  <section>
   {articles.map((article) => (
-  <article class="article-card">
-
-      <h1>{article.title}</h1>
+    <article>
+      <h2>{article.title}</h2>
       <p>{article.summary}</p>
+      <a href={article.url}>Read article</a>
     </article>
   ))}
-
-  </section>
+</section>
 </Layout>
