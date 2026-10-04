@@ -1,0 +1,17 @@
+:root {
+  --font-sans: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI";
+  --bg-page: #fff;
+  --foreground-text: #000;
+
+
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg-page);
+  color: var(--foreground-text);
+  font-family: var(--font-sans); 
+}
