@@ -1,0 +1,5 @@
+$kind: collection
+name: SpaceFlight News API
+variables:
+  - key: baseUrl
+    value: 'https://api.spaceflightnewsapi.net/v4'

@@ -1,0 +1,11 @@
+$kind: http-request
+name: Get Articles
+method: GET
+url: '{{baseUrl}}/articles/?limit=2&ordering=-published_at'
+order: 1000
+description: Fetches the latest articles ordered by publish date
+queryParams:
+  - key: limit
+    value: '2'
+  - key: ordering
+    value: '-published_at'

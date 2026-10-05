@@ -1,0 +1,11 @@
+$kind: http-request
+name: Get Blogs
+method: GET
+url: '{{baseUrl}}/blogs/?limit=5&ordering=-published_at'
+order: 2000
+description: Fetches the latest blogs ordered by publish date
+queryParams:
+  - key: limit
+    value: '5'
+  - key: ordering
+    value: '-published_at'
