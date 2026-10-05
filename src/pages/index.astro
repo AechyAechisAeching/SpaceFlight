@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getArticles }  from '../lib/spaceflight.ts';
-
+import { getBlogs } from '../lib/spaceflight.ts';
 
 const articles = await getArticles();
-
+const blogs = await getBlogs();
 ---
 
 <Layout>
@@ -19,4 +19,15 @@ const articles = await getArticles();
     </article>
   ))}
 </section>
+
+  <section>
+  {blogs.map((blog) => (
+    <article>
+    <h2>{blog.title}</h2>
+      <img src={blog.image_url}>
+    </article>
+  ))}
+
+  </section>
+
 </Layout>

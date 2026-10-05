@@ -9,9 +9,37 @@ export interface SpaceflightArticle {
   published_at: string;
 }
 
+export interface SpaceflightBlog {
+  id: number;
+  title: string;
+  author: string;
+  image_url: string;
+  published_at: string;
+  updated_at: string;
+}
+
+
+
+// Blogs endpoint
+export async function getBlogs(): Promise<SpaceflightBlog[]> {
+  const response = await fetch(
+    `${API_URL}/blogs/?limit=5&ordering=-published_at`
+  );
+
+  if (!response.ok) {
+    throw new Error(`API couldnt retrieve the blogs: ${response.status}`,
+    );
+  }
+
+  const data = await response.json();
+  return data.results as SpaceflightBlog[];
+
+}
+
+// Articles endpoint
 export async function getArticles(): Promise<SpaceflightArticle[]> {
   const response = await fetch(
-    `${API_URL}/articles/?limit=10&ordering=-published_at`
+    `${API_URL}/articles/?limit=2&ordering=-published_at`
   );
 
   if (!response.ok) {
