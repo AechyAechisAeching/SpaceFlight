@@ -2,9 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import { getArticles }  from '../lib/spaceflight.ts';
 import { getBlogs } from '../lib/spaceflight.ts';
+import { getReports } from '../lib/spaceflight.ts';
 
 const articles = await getArticles();
 const blogs = await getBlogs();
+const reports = await getReports();
 ---
 
 <Layout>
@@ -29,6 +31,19 @@ const blogs = await getBlogs();
       <p style="color: red;">{new Date(blog.published_at).toLocaleDateString()}</p>
     </article>
   ))}
+  </section>
+
+
+  <section>
+    {reports.map((report) => (
+    <article>
+    <h2>{report.title}</h2>
+      <img src={report.image_url}>
+      <p>{report.summary}</p>
+    <p>{new Date(report.published_at).toLocaleDateString()}</p>
+    </article>
+  
+    ))}
 
   </section>
 
