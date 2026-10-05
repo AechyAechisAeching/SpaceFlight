@@ -8,7 +8,7 @@ export interface SpaceflightLaunch {
 
 export async function getLaunches(): Promise<SpaceflightLaunch[]> {
   const response = await fetch(
-    `${API_URL}/launches/upcoming/?limit=1`,
+    `${API_URL}/launches/upcoming/?limit=4`,
   );
 
   if (!response.ok) {
@@ -16,8 +16,6 @@ export async function getLaunches(): Promise<SpaceflightLaunch[]> {
       `API couldn't retrieve the launch: ${response.status}`,
     );
   }
-
-  const data = await response.json();
-
+  const data = await response.json()
   return data.results as SpaceflightLaunch[];
 }

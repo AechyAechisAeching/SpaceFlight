@@ -10,19 +10,43 @@ const blogs = await getBlogs();
 const reports = await getReports();
 const launches = await getLaunches();
 
+const launchCountdowns = launches.map((launch) => {
+  const launchDate = new Date(launch.net);
+  const now = new Date();
+  
+  const distance = launchDate.getTime() - now.getTime();
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(distance / (1000 * 60 * 60)
+  );
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  let countdown;
+
+if (days > 0) {
+  countdown = `in ${days} days`;
+} else if (hours > 0) {
+  countdown = `in ${hours} hours`;
+} else if (seconds > 0) {
+  countdown = `launching in ${seconds} seconds`;
+} else {
+  countdown = "Shuttle is launching.";
+}
+
+return {
+  ...launch,
+  countdown,
+};
+ });
 ---
 
+{launchCountdowns.map((launch) => (
+  <article>
+    <h2>{launch.name}</h2>
+    <p>{launch.countdown}</p>
+  </article>
+))}
+
 <Layout>
-
-  <section>
-    {launches.map((launch) => (
-    <article>
-    <h1>{launch.name}</h1>
-      <h2>{launch.net}</h2>
-    </article>
-    ))}
-
-  </section>
 
 
   <section class="article-section">
