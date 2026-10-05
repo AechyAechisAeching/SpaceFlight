@@ -1,9 +1,19 @@
 :root {
   --font-sans: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI";
-  --bg-page: #fff;
-  --foreground-text: #000;
+  --bg-page: #0a0a0a;
+  --foreground-text: #D9D9D9;
+  --secundary-text: #808080;
+
+  --bg-card: #0f0f10;
+  
 
 
+    --border-primary: #1e1e1f;
+
+}
+* {
+  text-decoration: none;
+  color: var(--foreground-text);
 }
 
 html,
@@ -14,4 +24,18 @@ body {
   background: var(--bg-page);
   color: var(--foreground-text);
   font-family: var(--font-sans); 
+  text-decoration: none;
 }
+  .article-section {
+  padding: 50px;
+}
+
+.article-card {
+  background-color: var(--bg-card);
+  height: 250px;
+  padding: 10px;
+  width: 750px;
+  border: 1px solid var(--border-primary);
+  border-radius: 10px;
+}
+

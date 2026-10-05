@@ -3,20 +3,35 @@ import Layout from '../layouts/Layout.astro';
 import { getArticles }  from '../lib/spaceflight.ts';
 import { getBlogs } from '../lib/spaceflight.ts';
 import { getReports } from '../lib/spaceflight.ts';
+import { getLaunches } from '../lib/launches.ts';
 
 const articles = await getArticles();
 const blogs = await getBlogs();
 const reports = await getReports();
+const launches = await getLaunches();
+
 ---
 
 <Layout>
+
   <section>
-  {articles.map((article) => (
+    {launches.map((launch) => (
     <article>
+    <h1>{launch.name}</h1>
+      <h2>{launch.net}</h2>
+    </article>
+    ))}
+
+  </section>
+
+
+  <section class="article-section">
+  {articles.map((article) => (
+    <article class="article-card">
       <h2>{article.title}</h2>
       <p>{article.summary}</p>
       <!-- might delete the image url -->
-      <img src={article.image_url}>
+      <!-- <img src={article.image_url}> -->
       <p style="color: blue;">{new Date(article.published_at).toLocaleDateString()}</p>
       <a href={article.url}>Read article</a>
     </article>
@@ -27,7 +42,7 @@ const reports = await getReports();
   {blogs.map((blog) => (
     <article>
     <h2>{blog.title}</h2>
-      <img src={blog.image_url}>
+      <!-- <img src={blog.image_url}> -->
       <p style="color: red;">{new Date(blog.published_at).toLocaleDateString()}</p>
     </article>
   ))}
@@ -38,7 +53,7 @@ const reports = await getReports();
     {reports.map((report) => (
     <article>
     <h2>{report.title}</h2>
-      <img src={report.image_url}>
+      <!-- <img src={report.image_url}> -->
       <p>{report.summary}</p>
     <p>{new Date(report.published_at).toLocaleDateString()}</p>
     </article>

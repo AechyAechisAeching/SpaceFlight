@@ -1,4 +1,4 @@
-const API_URL = "https://api.spaceflightnewsapi.net/v4"
+const API_URL = import.meta.env.SPACEFLIGHT_API_URL;
 
 export interface SpaceflightArticle {
   id: number;
