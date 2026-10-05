@@ -10,41 +10,33 @@ const blogs = await getBlogs();
 const reports = await getReports();
 const launches = await getLaunches();
 
-const launchCountdowns = launches.map((launch) => {
-  const launchDate = new Date(launch.net);
-  const now = new Date();
-  
-  const distance = launchDate.getTime() - now.getTime();
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(distance / (1000 * 60 * 60)
-  );
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  let countdown;
-
-if (days > 0) {
-  countdown = `in ${days} days`;
-} else if (hours > 0) {
-  countdown = `in ${hours} hours`;
-} else if (seconds > 0) {
-  countdown = `launching in ${seconds} seconds`;
-} else {
-  countdown = "Shuttle is launching.";
-}
-
-return {
-  ...launch,
-  countdown,
-};
- });
 ---
 
-{launchCountdowns.map((launch) => (
-  <article>
-    <h2>{launch.name}</h2>
-    <p>{launch.countdown}</p>
-  </article>
-))}
+<!-- Using this later on probably..-->
+
+<!-- {launchCountdowns.map((launch) => ( -->
+<!--   <article> -->
+<!--     <h2>{launch.name}</h2> -->
+<!--     <p class={launch.status === "launched" ? "launched" : ""}>{launch.countdown}</p> -->
+<!--   </article> -->
+<!-- ))} -->
+
+ <section class="launch-section">
+    {launches.map((launch) => (
+      <article class="launch-card">
+        <h2>{launch.name}</h2>
+
+        <p
+          class="countdown"
+          data-launch-date={launch.net}
+        >
+
+          Loading...
+        </p>
+      </article>
+    ))}
+  </section>
+
 
 <Layout>
 
@@ -86,4 +78,49 @@ return {
 
   </section>
 
+  <script>
+  const countdowns = document.querySelectorAll(".countdown");
+
+  countdowns.forEach((element) => {
+    const launchDate = new Date(
+      element.dataset.launchDate!
+    ).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+
+      if (distance <= 0) {
+      element.closest(".launch-card")?.remove();
+      return;
+      }
+
+      const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+      );
+
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+      );
+
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+      );
+
+      const seconds = Math.floor(
+        (distance % (1000 * 60)) /
+        1000
+      );
+      element.textContent =
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
+</script>
 </Layout>

@@ -4,11 +4,13 @@ export interface SpaceflightLaunch {
   id: string;
   name: string;
   net: string | null;
+  status: string;
+  countdown: number;
 }
 
 export async function getLaunches(): Promise<SpaceflightLaunch[]> {
   const response = await fetch(
-    `${API_URL}/launches/upcoming/?limit=4`,
+    `${API_URL}/launches/upcoming/?limit=2`,
   );
 
   if (!response.ok) {
