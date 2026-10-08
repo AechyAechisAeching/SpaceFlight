@@ -27,15 +27,16 @@ const launches = await getLaunches();
     {launches.map((launch) => (
       <article class="launch-card">
         <h2>{launch.name}</h2>
-<img
-  src={launch.image.image_url}
-  alt={launch.name}
-/>
-        <p
-          class="countdown"
-          data-launch-date={launch.net}
-        >
 
+  <!-- Lower quality but way faster -->
+        <!-- src={launch.image.thumbnail_url} -->
+        <img
+  src={launch.image?.thumbnail_url ?? "/images/rocket-placeholder-image.jpg"}
+  alt={launch.name}
+  class="launch-image"
+/>
+
+        <p  class="countdown" data-launch-date={launch.net}>
           Loading...
         </p>
       </article>
@@ -87,44 +88,50 @@ const launches = await getLaunches();
   const countdowns = document.querySelectorAll(".countdown");
 
   countdowns.forEach((element) => {
-    const launchDate = new Date(
-      element.dataset.launchDate!
-    ).getTime();
+  const launchDate = new Date(
+    element.dataset.launchDate!
+  ).getTime();
 
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
+  const updateCountdown = () => {
+  const now = new Date().getTime();
+  const distance = launchDate - now;
 
 
-      if (distance <= 0) {
-      element.closest(".launch-card")?.remove();
-      return;
-      }
+  if (distance <= 0) {
+  element.closest(".launch-card")?.remove();
+  return;
+  }
 
-      const days = Math.floor(
-        distance / (1000 * 60 * 60 * 24)
-      );
+  const days = Math.floor(
+    distance / (1000 * 60 * 60 * 24)
+  );
 
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-      );
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) /
+    (1000 * 60 * 60)
+  );
 
-      const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) /
-        (1000 * 60)
-      );
+  const minutes = Math.floor(
+    (distance % (1000 * 60 * 60)) /
+    (1000 * 60)
+  );
 
-      const seconds = Math.floor(
-        (distance % (1000 * 60)) /
-        1000
-      );
-      element.textContent =
-      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  const seconds = Math.floor(
+    (distance % (1000 * 60)) /
+    1000
+  );
+  element.textContent =
+  `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-    };
+};
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  });
-</script>
+updateCountdown();
+    // Currently turned off due repeated fetching requests by image in console (its mad annoying)
+//     setInterval(updateCountdown, 1000);
+});
+document.querySelectorAll<HTMLImageElement>(".launch-image").forEach((image) => {
+  image.onerror = () => {
+    image.src = "/images/rocket-placeholder-image.jpg";
+  };
+});
+ </script>
