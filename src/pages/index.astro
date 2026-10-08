@@ -21,11 +21,16 @@ const launches = await getLaunches();
 <!--   </article> -->
 <!-- ))} -->
 
+<Layout>
+  <main>
  <section class="launch-section">
     {launches.map((launch) => (
       <article class="launch-card">
         <h2>{launch.name}</h2>
-
+<img
+  src={launch.image.image_url}
+  alt={launch.name}
+/>
         <p
           class="countdown"
           data-launch-date={launch.net}
@@ -38,10 +43,8 @@ const launches = await getLaunches();
   </section>
 
 
-<Layout>
 
-
-  <section class="article-section">
+    <section class="article-section">
   {articles.map((article) => (
     <article class="article-card">
       <h2>{article.title}</h2>
@@ -77,6 +80,8 @@ const launches = await getLaunches();
     ))}
 
   </section>
+  </main>
+  </Layout>
 
   <script>
   const countdowns = document.querySelectorAll(".countdown");
@@ -123,4 +128,3 @@ const launches = await getLaunches();
     setInterval(updateCountdown, 1000);
   });
 </script>
-</Layout>

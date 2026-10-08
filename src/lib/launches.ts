@@ -6,6 +6,10 @@ export interface SpaceflightLaunch {
   net: string | null;
   status: string;
   countdown: number;
+  image: {
+    image_url: string;
+    thumbnail_url: string;
+  }
 }
 
 export async function getLaunches(): Promise<SpaceflightLaunch[]> {

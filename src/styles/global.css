@@ -26,15 +26,26 @@ body {
   font-family: var(--font-sans); 
   text-decoration: none;
 }
-  .article-section {
-  padding: 50px;
+
+main {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
+.article-section {
+  display: grid;
+ grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 5px;
+ } 
+
 .article-card {
+  grid-column: 4/13;
   background-color: var(--bg-card);
   height: 250px;
   padding: 10px;
-  width: 750px;
+  width: 700px;
   border: 1px solid var(--border-primary);
   border-radius: 10px;
 }
