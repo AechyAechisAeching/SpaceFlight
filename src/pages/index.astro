@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getArticles }  from '../lib/spaceflight.ts';
-import { getBlogs } from '../lib/spaceflight.ts';
-import { getReports } from '../lib/spaceflight.ts';
-import { getLaunches } from '../lib/launches.ts';
+import { getArticles }  from '../services/spaceflight.ts';
+import { getBlogs } from '../services/spaceflight.ts';
+import { getReports } from '../services/spaceflight.ts';
+import { getLaunches } from '../services/launches.ts';
 
 const articles = await getArticles();
 const blogs = await getBlogs();
@@ -83,55 +83,6 @@ const launches = await getLaunches();
   </section>
   </main>
   </Layout>
-
-  <script>
-  const countdowns = document.querySelectorAll(".countdown");
-
-  countdowns.forEach((element) => {
-  const launchDate = new Date(
-    element.dataset.launchDate!
-  ).getTime();
-
-  const updateCountdown = () => {
-  const now = new Date().getTime();
-  const distance = launchDate - now;
-
-
-  if (distance <= 0) {
-  element.closest(".launch-card")?.remove();
-  return;
-  }
-
-  const days = Math.floor(
-    distance / (1000 * 60 * 60 * 24)
-  );
-
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) /
-    (1000 * 60 * 60)
-  );
-
-  const minutes = Math.floor(
-    (distance % (1000 * 60 * 60)) /
-    (1000 * 60)
-  );
-
-  const seconds = Math.floor(
-    (distance % (1000 * 60)) /
-    1000
-  );
-  element.textContent =
-  `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-};
-
-updateCountdown();
-    // Currently turned off due repeated fetching requests by image in console (its mad annoying)
-//     setInterval(updateCountdown, 1000);
-});
-document.querySelectorAll<HTMLImageElement>(".launch-image").forEach((image) => {
-  image.onerror = () => {
-    image.src = "/images/rocket-placeholder-image.jpg";
-  };
-});
- </script>
+<script>
+import "../lib/countdown.ts";
+</script>
