@@ -33,6 +33,19 @@ main {
   padding: 2rem;
 }
 
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+}
+
+.logo {
+  display: fixed;
+  width: 80px;
+  height: 80px;
+}
+
 .article-section {
   display: grid;
  grid-template-columns: repeat(12, 1fr);
