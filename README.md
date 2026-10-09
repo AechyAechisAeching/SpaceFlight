@@ -21,50 +21,7 @@ SpaceFlight uses the Spaceflight News API v4 to retrieve article information.
 
 The API provides structured data about spaceflight-related news articles. The website uses this data to display article titles, summaries, publication dates, and links to the original sources.
 
-
-### API Utility
-
-API requests are managed through a separate utility module:
-
-```text
-src/
-└── lib/
-    └── spaceflight.ts
-```
-
 Keeping API logic separate from the page components makes the code easier to maintain and reuse.
-
-## Project Structure
-
-The current project structure is organized around Astro's conventions.
-
-```text
-SpaceFlight/
-├── public/
-├── src/
-│   ├── lib/
-│   │   └── spaceflight.ts
-│   ├── pages/
-│   │   └── index.astro
-│   └── components/
-├── astro.config.mjs
-├── package.json
-├── package-lock.json
-└── README.md
-```
-
-Some directories and files may be added as development progresses.
-
-### Important Files
-
-| File | Responsibility |
-|---|---|
-| `src/pages/index.astro` | Homepage and article presentation |
-| `src/lib/spaceflight.ts` | API requests and article data retrieval |
-| `src/components/` | Reusable interface components |
-| `astro.config.mjs` | Astro configuration |
-| `package.json` | Dependencies and development scripts |
-
 ## Installation
 
 ### Requirements
