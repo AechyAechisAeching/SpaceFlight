@@ -1,0 +1,20 @@
+---
+import { getReports } from '../services/spaceflight.ts'
+
+
+const reports = await getReports(); 
+
+---
+
+  <section>
+    {reports.map((report) => (
+    <article>
+    <h2>{report.title}</h2>
+      <!-- <img src={report.image_url}> -->
+      <p>{report.summary}</p>
+    <p>{new Date(report.published_at).toLocaleDateString()}</p>
+    </article>
+  
+    ))}
+
+  </section>

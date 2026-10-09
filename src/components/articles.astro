@@ -1,0 +1,21 @@
+---
+import { getArticles }  from '../services/spaceflight.ts';
+
+const articles = await getArticles();
+
+---
+
+
+
+    <section class="article-section">
+  {articles.map((article) => (
+    <article class="article-card">
+      <h2>{article.title}</h2>
+      <p>{article.summary}</p>
+      <!-- might delete the image url -->
+      <!-- <img src={article.image_url}> -->
+      <p style="color: blue;">{new Date(article.published_at).toLocaleDateString()}</p>
+      <a href={article.url}>Read article</a>
+    </article>
+  ))}
+</section>

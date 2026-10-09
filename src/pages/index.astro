@@ -1,14 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getArticles }  from '../services/spaceflight.ts';
-import { getBlogs } from '../services/spaceflight.ts';
-import { getReports } from '../services/spaceflight.ts';
-import { getLaunches } from '../services/launches.ts';
-
-const articles = await getArticles();
-const blogs = await getBlogs();
-const reports = await getReports();
-const launches = await getLaunches();
+import Articles from '../components/articles.astro';
+import Launches from '../components/launches.astro';
+import Blogs from '../components/blogs.astro';
+import Reports from '../components/reports.astro';
 
 ---
 
@@ -23,66 +18,18 @@ const launches = await getLaunches();
 
 <Layout>
   <main>
- <section class="launch-section">
-    {launches.map((launch) => (
-      <article class="launch-card">
-        <h2>{launch.name}</h2>
 
-  <!-- Lower quality but way faster -->
-        <!-- src={launch.image.thumbnail_url} -->
-        <img
-  src={launch.image?.thumbnail_url ?? "/images/rocket-placeholder-image.jpg"}
-  alt={launch.name}
-  class="launch-image"
-/>
+  <Launches />
 
-        <p  class="countdown" data-launch-date={launch.net}>
-          Loading...
-        </p>
-      </article>
-    ))}
-  </section>
+  <Articles />
 
+  <Blogs />
 
+<Reports />
 
-    <section class="article-section">
-  {articles.map((article) => (
-    <article class="article-card">
-      <h2>{article.title}</h2>
-      <p>{article.summary}</p>
-      <!-- might delete the image url -->
-      <!-- <img src={article.image_url}> -->
-      <p style="color: blue;">{new Date(article.published_at).toLocaleDateString()}</p>
-      <a href={article.url}>Read article</a>
-    </article>
-  ))}
-</section>
-
-  <section>
-  {blogs.map((blog) => (
-    <article>
-    <h2>{blog.title}</h2>
-      <!-- <img src={blog.image_url}> -->
-      <p style="color: red;">{new Date(blog.published_at).toLocaleDateString()}</p>
-    </article>
-  ))}
-  </section>
-
-
-  <section>
-    {reports.map((report) => (
-    <article>
-    <h2>{report.title}</h2>
-      <!-- <img src={report.image_url}> -->
-      <p>{report.summary}</p>
-    <p>{new Date(report.published_at).toLocaleDateString()}</p>
-    </article>
-  
-    ))}
-
-  </section>
   </main>
   </Layout>
+
 <script>
 import "../lib/countdown.ts";
 </script>

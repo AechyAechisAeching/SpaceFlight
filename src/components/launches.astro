@@ -1,0 +1,26 @@
+---
+import { getLaunches } from '../services/launches.ts';
+
+const launches = await getLaunches();
+---
+
+
+ <section class="launch-section">
+    {launches.map((launch) => (
+      <article class="launch-card">
+        <h2>{launch.name}</h2>
+
+  <!-- Lower quality but way faster -->
+        <!-- src={launch.image.thumbnail_url} -->
+        <img
+  src={launch.image?.thumbnail_url ?? "/images/rocket-placeholder-image.jpg"}
+  alt={launch.name}
+  class="launch-image"
+/>
+
+        <p  class="countdown" data-launch-date={launch.net}>
+          Loading...
+        </p>
+      </article>
+    ))}
+  </section>

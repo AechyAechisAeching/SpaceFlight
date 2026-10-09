@@ -1,0 +1,16 @@
+---
+  import { getBlogs } from '../services/spaceflight.ts'
+
+  const blogs = await getBlogs();
+
+---
+
+  <section>
+  {blogs.map((blog) => (
+    <article>
+    <h2>{blog.title}</h2>
+      <!-- <img src={blog.image_url}> -->
+      <p style="color: red;">{new Date(blog.published_at).toLocaleDateString()}</p>
+    </article>
+  ))}
+  </section>
