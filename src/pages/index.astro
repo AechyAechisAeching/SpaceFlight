@@ -18,14 +18,26 @@ import Reports from '../components/reports.astro';
 
 <Layout>
   <main>
+    <!-- lowkey keeping section classes in here, more readable-->
+ <section class="launch-section">
+     <Launches />
+  </section>
 
-  <Launches />
 
-  <Articles />
+  <section class="article-section">
+     <Articles />
+  </section>
 
-  <Blogs />
 
-<Reports />
+  <section class="blogs-section">
+     <Blogs />
+  </section>
+
+
+
+  <section class="reports-section">
+     <Reports />
+  </section>
 
   </main>
   </Layout>

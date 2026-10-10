@@ -5,7 +5,6 @@ const launches = await getLaunches();
 ---
 
 
- <section class="launch-section">
     {launches.map((launch) => (
       <article class="launch-card">
         <h2>{launch.name}</h2>
@@ -23,4 +22,3 @@ const launches = await getLaunches();
         </p>
       </article>
     ))}
-  </section>
