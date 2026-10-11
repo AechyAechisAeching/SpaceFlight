@@ -42,7 +42,6 @@ main {
 }
 
 .logo {
-  display: fixed;
   width: 80px;
   height: 80px;
 }

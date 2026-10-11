@@ -3,7 +3,6 @@ const API_URL = import.meta.env.SPACEFLIGHT_API_URL;
 export interface SpaceflightArticle {
   id: number;
   title: string;
-  summary: string;
   image_url: string;
   url: string;
   published_at: string;
@@ -48,7 +47,7 @@ export async function getBlogs(): Promise<SpaceflightBlog[]> {
 // Articles endpoint
 export async function getArticles(): Promise<SpaceflightArticle[]> {
   const response = await fetch(
-    `${API_URL}/articles/?limit=2&ordering=-published_at`
+    `${API_URL}/articles/?limit=6&ordering=-published_at`
   );
 
   if (!response.ok) {
