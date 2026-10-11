@@ -1,6 +1,6 @@
 ---
-import { getReports } from '../services/spaceflight.ts'
-
+import { getReports } from '../services/spaceflight.ts';
+import { formatDate } from '../lib/formatDate.ts';
 
 const reports = await getReports(); 
 
@@ -12,7 +12,7 @@ const reports = await getReports();
     <h2>{report.title}</h2>
       <!-- <img src={report.image_url}> -->
       <p>{report.summary}</p>
-    <p>{new Date(report.published_at).toLocaleDateString()}</p>
+      <p>{formatDate(report.published_at)}</p>
     </article>
   
     ))}

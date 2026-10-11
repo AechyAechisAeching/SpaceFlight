@@ -1,5 +1,6 @@
 ---
-  import { getBlogs } from '../services/spaceflight.ts'
+  import { getBlogs } from '../services/spaceflight.ts';
+  import { formatDate} from '../lib/formatDate.ts';
 
   const blogs = await getBlogs();
 
@@ -10,6 +11,6 @@
     <article>
     <h2>{blog.title}</h2>
       <!-- <img src={blog.image_url}> -->
-      <p style="color: red;">{new Date(blog.published_at).toLocaleDateString()}</p>
+    <p>{formatDate(blog.published_at)}</p>
     </article>
   ))}
