@@ -12,12 +12,17 @@ const articles = await getArticles();
 <div class="article-grid">
   {articles.map((article) => (
     <article class="article-card">
-      <h2>{article.title}</h2>
       <!-- might delete the image url -->
-      <!-- <img src={article.image_url}> -->
+    <img class="article-image" src={article.image_url} alt="" loading="lazy" />
 
-      <p>{formatDate(article.published_at)}</p>
-      <a href={article.url}>Read article</a>
+    <div class="article-content">
+      <p class="article-date">{formatDate(article.published_at)}</p>
+      <h3>{article.title}</h3>
+
+    <div class="article-footer">
+      <a href={article.url} target="_blank" rel="noopener noreferrer">View article ↗︎</a>
+</div>
+    </div>
     </article>
   ))}
 </div>

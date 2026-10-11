@@ -1,15 +1,17 @@
 :root {
   --font-sans: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI";
   --bg-page: #080a0e;
-  --foreground-text: #D9D9D9;
+  --foreground-text: #e6e8eb;
   --secundary-text: #808080;
+  --text-muted-foreground: #9fa1a5;
 
 
   --border-primary: #1e1e1f;
 
+  --text-sm: 8px;
 
-
-  --card-header: 13px; 
+  --card-header: 18px; 
+  --card-date: .875rem;
 }
 * {
   text-decoration: none;
@@ -75,8 +77,6 @@ main {
 }
 
 .article-section {
-  display: grid;
-  gap: 5px;
   border-top: 1px solid var(--border-primary);
   padding-top: 30px;
   padding-bottom: 30px;
@@ -84,12 +84,56 @@ main {
 
 .article-grid {
   display: grid;
+  column-gap: 35px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .article-card {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
   border-bottom: 1px solid var(--border-primary);
   padding: 30px;
-  font-size: var(--card-header);
 }
 
+.article-image {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.article-content {
+  padding-left: 5px;
+}
+
+.article-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.article-date {
+  margin-left: 10px;
+  margin-top: 1px;
+  font-size: var(--card-date);
+  color: var(--text-muted-foreground);
+}
+
+.article-content h3 {
+  margin-left: 10px;
+  font-size: var(--card-header);
+  font-weight: 700;
+}
+
+.article-content a {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(0, 0, 0, 0.3);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.article-content a:hover {
+  text-decoration-color: currentColor;
+}
