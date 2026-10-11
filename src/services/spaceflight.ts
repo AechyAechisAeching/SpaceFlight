@@ -1,11 +1,17 @@
 const API_URL = import.meta.env.SPACEFLIGHT_API_URL;
 
+
+interface Author {
+  name: string;
+}
+
 export interface SpaceflightArticle {
   id: number;
   title: string;
   image_url: string;
   url: string;
   published_at: string;
+  authors: Author[];
 }
 
 export interface SpaceflightBlog {

@@ -16,9 +16,8 @@ const articles = await getArticles();
     <img class="article-image" src={article.image_url} alt="" loading="lazy" />
 
     <div class="article-content">
-      <p class="article-date">{formatDate(article.published_at)}</p>
+      <p class="article-date"> {article.authors[0]?.name ?? ""} · {formatDate(article.published_at)}</p>
       <h3>{article.title}</h3>
-
     <div class="article-footer">
       <a href={article.url} target="_blank" rel="noopener noreferrer">View article ↗︎</a>
 </div>
