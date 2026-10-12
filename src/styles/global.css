@@ -50,7 +50,7 @@ main {
 
 .launches-section {
   display: grid;
-  gap: 5px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   border-bottom: 1px solid var(--border-primary);
   padding-top: 30px;
   padding-bottom: 30px;
@@ -92,7 +92,7 @@ main {
   display: grid;
   grid-template-columns: 150px minmax(0, 1fr);
   border-bottom: 1px solid var(--border-primary);
-  padding: 30px;
+  padding: 20px;
 }
 
 .article-image {
@@ -137,3 +137,26 @@ main {
 .article-content a:hover {
   text-decoration-color: currentColor;
 }
+
+
+.blog-card {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  border-bottom: 1px solid var(--border-primary);
+  padding: 20px;
+}
+
+.blog-image {
+  display: grid;
+  grid-column: end;
+  width: 300px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.blog-content {
+  display: grid;
+  width: 1000px;
+}
+

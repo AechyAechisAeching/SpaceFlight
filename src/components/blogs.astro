@@ -7,10 +7,16 @@
 ---
 
 <h1>Blogs</h1>
+<!-- <div class="blog-grid"> -->
   {blogs.map((blog) => (
-    <article>
-    <h2>{blog.title}</h2>
-      <!-- <img src={blog.image_url}> -->
+    <article class="blog-card">
+    <div class="blog-content">
+
     <p>{formatDate(blog.published_at)}</p>
-    </article>
+      <h2>{blog.title}</h2>
+      <p>{blog.summary}</p>
+  </div>
+      <img class="blog-image" src={blog.image_url}>
+  </article>
   ))}
+<!-- </div> -->
