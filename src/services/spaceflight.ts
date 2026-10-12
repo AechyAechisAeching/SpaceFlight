@@ -19,6 +19,7 @@ export interface SpaceflightBlog {
   title: string;
   authors: Author[];
   image_url: string;
+  url: string;
   published_at: string;
   updated_at: string;
 }

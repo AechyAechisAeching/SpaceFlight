@@ -9,7 +9,7 @@
 
 <h1>Blogs</h1>
 {blogs.map((blog) => (
-  <article class="blog-card">
+<a class="blog-card" href={blog.url} target="_blank" rel="noopener noreferrer">
     <div class="blog-content">
       <div class="blog-meta">
       <div class="blog-meta-left">
@@ -27,5 +27,5 @@
     </div>
 
     <img class="blog-image" src={blog.image_url} alt="" loading="lazy" />
-  </article>
+  </a>
 ))}
