@@ -18,7 +18,7 @@ const articles = await getArticles();
     <div class="article-content">
       <p class="article-date"> {article.authors[0]?.name ?? ""} · {formatDate(article.published_at)}</p>
       <h3>{article.title}</h3>
-    <div class="article-footer">
+    <div class="card-footer">
       <span class="hyper">View article ↗︎</span>
 </div>
     </div>

@@ -113,7 +113,7 @@ main {
   padding-left: 5px;
 }
 
-.article-footer {
+.card-footer {
   display: flex;
   justify-content: flex-end;
   margin-top: auto;
