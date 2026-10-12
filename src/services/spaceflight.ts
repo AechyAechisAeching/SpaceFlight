@@ -11,13 +11,13 @@ export interface SpaceflightArticle {
   image_url: string;
   url: string;
   published_at: string;
-  authors: Author[];
+  authors: Author[]
 }
 
 export interface SpaceflightBlog {
   id: number;
   title: string;
-  author: string;
+  authors: Author[];
   image_url: string;
   published_at: string;
   updated_at: string;
@@ -27,7 +27,7 @@ export interface SpaceflightReport {
   id: number;
   title: string;
   summary: string;
-  author: string;
+  author: Author[]
   image_url: string;
   published_at: string;
   updated_at: string;

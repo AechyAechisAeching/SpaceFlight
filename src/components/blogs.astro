@@ -3,20 +3,29 @@
   import { formatDate} from '../lib/formatDate.ts';
 
   const blogs = await getBlogs();
+  const DEFAULT_AVATAR = '/images/nasa-logo.png'
 
 ---
 
 <h1>Blogs</h1>
-<!-- <div class="blog-grid"> -->
-  {blogs.map((blog) => (
-    <article class="blog-card">
+{blogs.map((blog) => (
+  <article class="blog-card">
     <div class="blog-content">
+      <div class="blog-meta">
+      <div class="blog-meta-left">
+      <img class="blog-avatar" src={blog.author_avatar || DEFAULT_AVATAR} alt="" />
+      <p class="top-meta">{blog.authors[0]?.name ?? ""} </p>
+      </div>
 
-    <p>{formatDate(blog.published_at)}</p>
+      <div class="blog-meta-right">
+      <p class="top-meta">{formatDate(blog.published_at)}</p>
+      </div>
+      </div>
+
       <h2>{blog.title}</h2>
-      <p>{blog.summary}</p>
-  </div>
-      <img class="blog-image" src={blog.image_url}>
+      <p class="blog-summary">{blog.summary}</p>
+    </div>
+
+    <img class="blog-image" src={blog.image_url} alt="" loading="lazy" />
   </article>
-  ))}
-<!-- </div> -->
+))}
