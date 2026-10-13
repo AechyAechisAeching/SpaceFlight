@@ -6,17 +6,19 @@ const launches = await getLaunches();
 
 
     {launches.map((launch) => (
-      <article class="launch-card">
+      <div class="launch-card">
         <h2>{launch.name}</h2>
-
+        <h3>Test</h3>
+        <h3>Test</h3>
+        <h3>Test</h3>
+        <h3>Test</h3>
   <!-- Lower quality but way faster -->
         <!-- src={launch.image.thumbnail_url} -->
-        <img src={launch.image?.thumbnail_url ?? "/images/rocket-placeholder-image.jpg"} alt={launch.name}
+      </div>
+        <img src={launch.image?.image_url ?? "/images/rocket-placeholder-image.jpg"} alt={launch.name}
   class="launch-image"
 />
-
         <p class="countdown" data-launch-date={launch.net}>
           Loading...
         </p>
-      </article>
     ))}

@@ -49,11 +49,13 @@ main {
 
 .launches-section {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-bottom: 1px solid var(--border-primary);
-  padding-top: 30px;
-  padding-bottom: 30px;
-
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1360px;
+  margin: 0 auto;
+  border: 1px solid red;
+  padding: 16px;
+  display: grid;
 }
 
 .reports-section {
@@ -80,6 +82,26 @@ main {
   padding-top: 30px;
   padding-bottom: 30px;
  } 
+
+.launch-image {
+  position: relative;
+  height: 650px;
+  object-fit: cover;
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.launch-card {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  gap: 24px;
+  border: 1px solid blue;
+}
 
 .article-grid {
   display: grid;
@@ -157,6 +179,7 @@ main {
   text-decoration: none;
   transition: transform 0.3s ease;
 }
+
 .blog-card:hover{
   transform: scale(1.01);
 }
@@ -164,7 +187,6 @@ main {
 .article-card:hover{
   transform: scale(1.01);
 }
-
 
 .blog-content {
   display: flex;
