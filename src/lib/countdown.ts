@@ -19,8 +19,6 @@ countdowns.forEach((element) => {
 
     if (distance <= 0) {
       element.closest(".launch-card")?.remove();
-      element.textContent = "Just launched";
-      element.classList.add("countdown-finished");
       return;
     }
 
