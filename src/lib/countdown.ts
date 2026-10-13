@@ -15,11 +15,12 @@ countdowns.forEach((element) => {
   }
 
   const updateCountdown = () => {
-    const now = Date.now();
-    const distance = launchDate - now;
+    const distance = launchDate - Date.now();
 
     if (distance <= 0) {
       element.closest(".launch-card")?.remove();
+      element.textContent = "Just launched";
+      element.classList.add("countdown-finished");
       return;
     }
 
@@ -31,9 +32,6 @@ countdowns.forEach((element) => {
       `${days}d ${hours}h ${minutes}m `;
   };
   updateCountdown();
-
-  // Currently been commented out due repeatedly fetching images
-  // setInterval(updateCountdown, 1000);
 });
 
 document
