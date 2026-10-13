@@ -10,6 +10,36 @@ export interface SpaceflightLaunch {
     image_url: string;
     thumbnail_url: string;
   }
+
+  rocket?: {
+    name?: string;
+    configuration?: {
+      name?: string;
+    }
+  };
+  launch_service_provider?: {
+    name?: string;
+  };
+  agency?:
+  {
+    name?: string;
+  };
+  pad?: {
+    location?: {
+      name?: string;
+    }
+  };
+  location?: {
+    name?: string;
+  };
+  mission?: {
+    orbit?: {
+      name?: string;
+    }
+  };
+  orbit?: {
+    name?: string;
+  };
 }
 
 export async function getLaunches(): Promise<SpaceflightLaunch[]> {

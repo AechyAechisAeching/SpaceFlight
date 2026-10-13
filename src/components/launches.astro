@@ -2,23 +2,43 @@
 import { getLaunches } from '../services/launches.ts';
 
 const launches = await getLaunches();
+const first = launches[0];
+const rocket = first?.rocket?.configuration?.name ?? first?.rocket?.name ?? 'To be announced';
+const agency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
+const location = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
+const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announced';
 ---
 
+<div class="launch-feature">
+  <div class="launch-card">
+    <h1>{rocket ?? 'Upcoming launches'}</h1>
+    <span class="section-seperator"></span>
+    <h2>Launch info, lined up</h2>
+    <p class="launch-description">
+      Check upcoming launches and dive deeper with detailed mission information and data.*
+    </p>
 
-    {launches.map((launch) => (
-      <div class="launch-card">
-        <h2>{launch.name}</h2>
-        <h3>Test</h3>
-        <h3>Test</h3>
-        <h3>Test</h3>
-        <h3>Test</h3>
-  <!-- Lower quality but way faster -->
-        <!-- src={launch.image.thumbnail_url} -->
-      </div>
-        <img src={launch.image?.image_url ?? "/images/rocket-placeholder-image.jpg"} alt={launch.name}
-  class="launch-image"
-/>
-        <p class="countdown" data-launch-date={launch.net}>
-          Loading...
-        </p>
-    ))}
+    <div class="rocket-information">
+      <h3>Rocket information</h3>
+      <ul class="launch-details">
+        <li><span>Rocket</span><span>{first?.name}</span></li>
+        <li><span>Agency</span><span>{agency}</span></li>
+        <li><span>Location</span><span>{location}</span></li>
+        <li><span>Orbit</span><span>{orbit}</span></li>
+      </ul>
+    </div>
+
+    <div class="launch-information-section">
+    <a class="launch-more" href="#launch-details">More details <span aria-hidden="true">→</span></a>
+</div>
+  </div>
+
+  <!-- TODO: Countdown absolute position inside the image itself -->
+    <!-- {first && <p class="countdown" data-launch-date={first.net}>Loading...</p>} -->
+
+  <img
+    src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
+    alt={first ? `Rocket for ${first.name}` : 'Rocket launch'}
+    class="launch-image"
+  />
+</div>
