@@ -80,7 +80,7 @@ main {
  } 
 
 .launch-image {
-  width: 100%;
+  width: 90%;
   height: min(620px, 65vw);
   min-height: 360px;
   object-fit: cover;
