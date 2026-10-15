@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLaunches } from '../services/launches.ts';
+
+const launches = await getLaunches();
+const currentRocket = launches[0]?.rocket?.configuration?.name
+  ?? launches[0]?.rocket?.name
+  ?? 'To be announced';
+---
+
+<Layout>
+  <main>
+    <h1>{currentRocket}</h1>
+  </main>
+</Layout>
