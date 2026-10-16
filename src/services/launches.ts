@@ -18,6 +18,7 @@ export interface SpaceflightLaunch {
 
   rocket?: {
     name?: string;
+    variant?: number;
     configuration?: {
       name?: string;
     }

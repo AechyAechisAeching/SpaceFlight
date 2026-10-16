@@ -8,18 +8,35 @@ const currentRocket = first?.rocket?.configuration?.name
   ?? first?.rocket?.name
   ?? 'To be announced';
 const currentAgency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
+const currentVariants = first?.rocket?.configuration?.variant ?? 'No variants available';
 const currentLocation = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
 const currentOrbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announced';
+const launchStatus = first?.status?.name ?? 'To be announced';
 
 ---
 
 <Layout>
   <main>
     <h1>{currentRocket}</h1>
+    <h2>Launch status</h2>
+    <p>{launchStatus}</p>
+    <h2>Agency</h2>
     <h2>{currentAgency}</h2>
-    <h2>{currentLocation}</h2>
-    <h2>{currentOrbit}</h2>
+    <h2>Location</h2>
+    <p>{currentLocation}</p>
+    <h2>Orbit</h2>
+    <p>{currentOrbit}</p>
+    <h2>Variants</h2>
+    <p>{currentVariants}</p>
+    <h1>Departure</h1>
     {first?.net && <p class="countdown" data-launch-date={first.net}>Loading countdown…</p>}
+
+  <img
+    src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
+    alt={first ? `Rocket for ${first.name}` : 'Rocket launch'}
+    class="launch-image"
+  />
+
   </main>
 </Layout>
 
