@@ -1,10 +1,15 @@
 const API_URL = import.meta.env.LAUNCHES_API_URL;
 
+interface LaunchStatus {
+  name: string;
+  abbrev: string;
+};
+
 export interface SpaceflightLaunch {
   id: string;
   name: string;
   net: string | null;
-  status: string;
+  status: LaunchStatus;
   countdown: number;
   image: {
     image_url: string;

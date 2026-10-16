@@ -3,13 +3,26 @@ import Layout from '../layouts/Layout.astro';
 import { getLaunches } from '../services/launches.ts';
 
 const launches = await getLaunches();
-const currentRocket = launches[0]?.rocket?.configuration?.name
-  ?? launches[0]?.rocket?.name
+const first = launches[0];
+const currentRocket = first?.rocket?.configuration?.name
+  ?? first?.rocket?.name
   ?? 'To be announced';
+const currentAgency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
+const currentLocation = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
+const currentOrbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announced';
+
 ---
 
 <Layout>
   <main>
     <h1>{currentRocket}</h1>
+    <h2>{currentAgency}</h2>
+    <h2>{currentLocation}</h2>
+    <h2>{currentOrbit}</h2>
+    {first?.net && <p class="countdown" data-launch-date={first.net}>Loading countdown…</p>}
   </main>
 </Layout>
+
+<script>
+  import '../lib/countdown.ts';
+</script>

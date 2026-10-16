@@ -18,7 +18,7 @@ countdowns.forEach((element) => {
     const distance = launchDate - Date.now();
 
     if (distance <= 0) {
-      element.closest(".launch-card")?.remove();
+      element.textContent = "Launch time reached";
       return;
     }
 
@@ -30,6 +30,7 @@ countdowns.forEach((element) => {
       `${days}d ${hours}h ${minutes}m `;
   };
   updateCountdown();
+  window.setInterval(updateCountdown, 1000);
 });
 
 document
