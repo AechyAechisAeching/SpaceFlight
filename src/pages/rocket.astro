@@ -5,8 +5,7 @@ import { getLaunches } from '../services/launches.ts';
 const launches = await getLaunches();
 const first = launches[0];
 const currentRocket = first?.rocket?.configuration?.name
-  ?? first?.rocket?.name
-  ?? 'To be announced';
+  ?? first?.rocket?.name ?? 'To be announced';
 const currentAgency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
 const currentVariants = first?.rocket?.configuration?.variant ?? 'No variants available';
 const currentLocation = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
