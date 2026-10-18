@@ -12,7 +12,7 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
 <div class="launch-feature">
   <div class="launch-card">
     <h1>{rocket ?? 'Upcoming launches'}</h1>
-    <span class="section-seperator"></span>
+    <span class="section-separator"></span>
     <h2>Launch info, lined up</h2>
     <p class="launch-description">
       Check upcoming launches and dive deeper with detailed mission information and data.*
@@ -33,23 +33,30 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
 </div>
   </div>
 
-  <!-- TODO: Countdown absolute position inside the image itself -->
-    <!-- {first && <p class="countdown" data-launch-date={first.net}>Loading...</p>} -->
 
+  <div class="image-container">
   <img
     src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
     alt={first ? `Rocket for ${first.name}` : 'Rocket launch'}
-    class="launch-image"
-  />
+    class="launch-image" />
+      {first && <p class="countdown" data-launch-date={first.net}>Loading...</p>}
+      <a class="schedule-hyper" href="/schedules">More Launches <span aria-hidden="true">→</span></a>
+  </div>
 </div>
 
 <style>
+
 .launch-image {
-  width: 90%;
+  width: 100%;
   height: min(620px, 65vw);
   min-height: 360px;
   object-fit: cover;
   border-radius: 10px;
+  opacity: 0.6;
+}
+
+.image-container {
+  position: relative;
 }
 
 .launch-feature {
@@ -66,7 +73,7 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
   min-width: 0;
 }
 
-.section-seperator {
+.section-separator {
   border-bottom: 1px solid var(--border-primary); 
   margin-bottom: 25px;
   width: 600px;
@@ -136,22 +143,43 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
   font-weight: 600;
 }
 
-.launch-more span {
+.launch-more span,
+.schedule-hyper span {
   display: inline-block;
-  margin-left: 5px;
   transition: transform 0.2s ease;
 }
 
-.launch-more:hover span {
+.launch-more:hover span,
+.schedule-hyper:hover span {
   transform: translateX(4px);
 }
 
+
+.schedule-hyper {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  color: var(--foreground-text);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .countdown {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  color: var(--text-muted-foreground);
+  position: absolute;
+  top: -10%;
+  font-size: 45px;
+  width: 100%;
+  text-align: center;
+  color: var(--foreground-text) !important;
+  padding-top: 50px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--border-secundary);
+  font-weight: bolder;
 }
 
 </style>
