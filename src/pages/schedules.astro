@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import { getAllLaunches } from '../services/launches.ts';
 
-
 const launches = await getAllLaunches();
 ---
 
@@ -15,12 +14,12 @@ const launches = await getAllLaunches();
     <section class="blogs-section">
     {launches.map((launch) => (
       <a class="column-card" href="/" rel="noopener noreferrer">
-      <img class="column-image" src='/images/unavailable-rocket.svg' alt="Rocket" loading="lazy" />
+        <img class="column-image" src={launch.image.image_url} alt="Rocket" loading="lazy" />
         <div class="card-content">
-      <p class="card-info">Random info - random more info</p>
+          <p class="card-info">{launch.launch_service_provider?.name}</p>
           <h3>{launch.name}</h3>
           <div class="card-countdown">
-        <span class="countdown-text">Countdown</span>
+            {launch.net && <span class="countdown" data-launch-date={launch.net}>Loading...</span>}
           </div>
         </div>
       </a>
@@ -29,7 +28,9 @@ const launches = await getAllLaunches();
     </section>
   </main>
 </Layout>
-
+<script>
+import '../lib/countdown.ts'
+</script>
 <style>
 .column-card {
   display: grid;

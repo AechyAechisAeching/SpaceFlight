@@ -18,7 +18,7 @@ countdowns.forEach((element) => {
     const distance = launchDate - Date.now();
 
     if (distance <= 0) {
-      element.textContent = "Launch time reached";
+      element.textContent = "Ready to launch.";
       return;
     }
 
