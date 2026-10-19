@@ -18,7 +18,7 @@ countdowns.forEach((element) => {
     const distance = launchDate - Date.now();
 
     if (distance <= 0) {
-      element.textContent = "Ready to launch.";
+      element.closest(".column-card")?.remove();
       return;
     }
 
