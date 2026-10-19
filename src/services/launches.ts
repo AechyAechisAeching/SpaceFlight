@@ -48,9 +48,25 @@ export interface SpaceflightLaunch {
   };
 }
 
+
+export async function getAllLaunches(): Promise<SpaceflightLaunch[]> {
+  const response = await fetch(
+    `${API_URL}/launches/upcoming/?limit=25&ordering=net`,
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `API couldn't fetch all launches: ${response.status}`,
+    );
+  }
+  const data = await response.json();
+  return data.results as SpaceflightLaunch[];
+}
+
+
 export async function getLaunches(): Promise<SpaceflightLaunch[]> {
   const response = await fetch(
-    `${API_URL}/launches/upcoming/?limit=20&ordering=net`,
+    `${API_URL}/launches/upcoming/?limit=25&ordering=net`,
   );
 
   if (!response.ok) {

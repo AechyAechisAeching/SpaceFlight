@@ -70,7 +70,6 @@ main {
 .blogs-section {
   display: grid;
   gap: 5px;
-  border-bottom: 1px solid var(--border-primary);
   padding-top: 30px;
   padding-bottom: 30px;
  

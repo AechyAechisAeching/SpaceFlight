@@ -1,16 +1,81 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getAllLaunches } from '../services/launches.ts';
 
+
+const launches = await getAllLaunches();
 ---
 
 <Layout>
   <main>
     <h1>Upcoming Launches</h1>
+    <p class="title-description">Every rocket on the pad next, with live countdowns. Pick a launch to dive into the rocket, the pad and the mission.</p>
 
 
+    <section class="blogs-section">
+    {launches.map((launch) => (
+      <a class="column-card" href="/" rel="noopener noreferrer">
+      <img class="column-image" src='/images/unavailable-rocket.svg' alt="Rocket" loading="lazy" />
+        <div class="card-content">
+      <p class="card-info">Random info - random more info</p>
+          <h3>{launch.name}</h3>
+          <div class="card-countdown">
+        <span class="countdown-text">Countdown</span>
+          </div>
+        </div>
+      </a>
+    ))}
 
-
-
-
+    </section>
   </main>
 </Layout>
+
+<style>
+.column-card {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-primary);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.column-card:hover {
+  transform: scale(1.01);
+}
+
+.column-image {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 100px;
+}
+
+.card-content h3 {
+  margin: 0;
+}
+
+.card-info {
+  margin: 0;
+  font-size: var(--card-date);
+  color: var(--text-muted-foreground);
+}
+
+.card-countdown {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+</style>
