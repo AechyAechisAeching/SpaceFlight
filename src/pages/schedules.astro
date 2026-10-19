@@ -1,8 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getAllLaunches } from '../services/launches.ts';
-
+import { formatDate } from '../lib/formatDate.ts';
 const launches = await getAllLaunches();
+const formatLaunchDate = (dateString: string) => {
+  const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return 'Date to be announced';
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+};
 ---
 
 <Layout>
@@ -16,7 +25,7 @@ const launches = await getAllLaunches();
       <a class="column-card" href="/" rel="noopener noreferrer">
         <img class="column-image" src={launch.image.image_url} alt="Rocket" loading="lazy" />
         <div class="card-content">
-          <p class="card-info">{launch.launch_service_provider?.name}</p>
+          <p class="card-info">{launch.launch_service_provider?.name} · {formatLaunchDate(launch.net)}</p>
           <h3>{launch.name}</h3>
           <div class="card-countdown">
             {launch.net && <span class="countdown" data-launch-date={launch.net}>Loading...</span>}
@@ -29,7 +38,7 @@ const launches = await getAllLaunches();
   </main>
 </Layout>
 <script>
-import '../lib/countdown.ts'
+import '../lib/countdown.ts';
 </script>
 <style>
 .column-card {
