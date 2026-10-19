@@ -39,6 +39,7 @@ export interface SpaceflightLaunch {
     name?: string;
   };
   mission?: {
+    name?: string;
     orbit?: {
       name?: string;
     }
@@ -47,7 +48,6 @@ export interface SpaceflightLaunch {
     name?: string;
   };
 }
-
 
 export async function getAllLaunches(): Promise<SpaceflightLaunch[]> {
   const response = await fetch(

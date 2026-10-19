@@ -27,6 +27,7 @@ const formatLaunchDate = (dateString: string) => {
         <div class="card-content">
           <p class="card-info">{launch.launch_service_provider?.name} · {formatLaunchDate(launch.net)}</p>
           <h3>{launch.name}</h3>
+          <p class="description-control">{launch.mission?.name} · {launch.pad?.location?.name}</p>
           <div class="card-countdown">
             {launch.net && <span class="countdown" data-launch-date={launch.net}>Loading...</span>}
           </div>
@@ -67,7 +68,6 @@ import '../lib/countdown.ts';
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: 6px;
   min-height: 100px;
 }
 
@@ -79,13 +79,21 @@ import '../lib/countdown.ts';
   margin: 0;
   font-size: var(--card-date);
   color: var(--text-muted-foreground);
+  letter-spacing: 0.5px;
+  margin-bottom: 9px
 }
 
 .card-countdown {
   display: flex;
   justify-content: flex-start;
   margin-top: auto;
-  padding-top: 12px;
+  letter-spacing: 1.9px;
+}
+
+.description-control {
+  margin-top: 10px;
+  font-size: var(--text-md);
+  color: var(--text-muted-foreground);
 }
 
 </style>
