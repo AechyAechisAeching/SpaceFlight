@@ -3,8 +3,6 @@
   import { formatDate} from '../lib/formatDate.ts';
 
   const blogs = await getBlogs();
-  const DEFAULT_AVATAR = '/images/nasa-logo.png'
-
 ---
 
 <h1>Blogs</h1>
@@ -13,7 +11,11 @@
     <div class="blog-content">
       <div class="blog-meta">
       <div class="blog-meta-left">
-      <img class="blog-avatar" src={blog.author_avatar || DEFAULT_AVATAR} alt="" />
+      {blog.author_avatar ? (
+        <img class="blog-avatar" src={blog.author_avatar} alt="" />
+      ) : (
+        <span class="blog-avatar blog-avatar-placeholder" aria-hidden="true"></span>
+      )}
       <p class="top-meta">{blog.authors[0]?.name ?? ""} </p>
       </div>
 
@@ -29,7 +31,7 @@
     <!-- </div> -->
     </div>
 
-<img class="blog-image" src={blog.image_url} onerror="this.onerror=null; this.src='/images/uavailable-rocket.svg';" alt="" loading="lazy" />
+<img class="blog-image" src={blog.image_url} onerror="this.onerror=null; this.src='/images/unavailable-rocket.svg';" alt="" loading="lazy" />
   </a>
 ))}
 
@@ -93,6 +95,11 @@
   object-fit: cover;
 }
 
+.blog-avatar-placeholder {
+  display: block;
+  background: url('/images/nasa-logo.png') center / cover no-repeat;
+}
+
 .blog-content h2 {
   margin: 0;
   font-size: 1.5rem;
@@ -115,7 +122,5 @@
   object-fit: cover;
   border-radius: 8px;
 }
-
-
 
 </style>

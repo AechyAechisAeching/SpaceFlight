@@ -18,6 +18,7 @@ export interface SpaceflightBlog {
   id: number;
   title: string;
   authors: Author[];
+  author_avatar?: string | null;
   image_url: string;
   url: string;
   published_at: string;
