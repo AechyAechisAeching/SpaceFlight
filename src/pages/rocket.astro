@@ -30,33 +30,35 @@ const launchStatus = first?.status?.name ?? 'To be announced';
     <h1>Departure</h1>
     {first?.net && <p class="countdown" data-launch-date={first.net}>Loading countdown…</p>}
 
-  <img
-    src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
-    alt={first ? `Rocket for ${first.name}` : 'Rocket launch'}
-    class="launch-image"
-  />
-
+  <!-- <img -->
+  <!--   src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'} -->
+  <!--   alt={first ? `Rocket for ${first.name}` : 'Rocket launch'} -->
+  <!--   class="launch-image" -->
+  <!-- /> -->
+  <!---->
 <section class="section-information">
+
+  <div class="fields">
   <div class="section-head">
     <h2>Mission Overview</h2>
     <p>What is the flight about</p>
   </div>
 
-  <div class="fields">
+
     <div class="field">
-      <span class="field-label">Head</span>
+      <span class="field-label">Mission name</span>
       <span class="field-value">Info</span>
     </div>
     <div class="field">
-      <span class="field-label">Head</span>
+      <span class="field-label">Mission type</span>
           <span class="field-value">Info</span>
     </div>
     <div class="field">
-      <span class="field-label">Head</span>
+      <span class="field-label">Mission orbit</span>
       <span class="field-value">Info</span>
     </div>
     <div class="field">
-      <span class="field-label">Head</span>
+      <span class="field-label">Mission abbrev</span>
       <span class="field-value">Info</span>
     </div>
 
@@ -65,6 +67,7 @@ const launchStatus = first?.status?.name ?? 'To be announced';
       <span class="field-value">Some lovely information about this lovely little shuttle</span>
     </div>
   </div>
+
 </section>
 
 
@@ -72,32 +75,37 @@ const launchStatus = first?.status?.name ?? 'To be announced';
 </Layout>
 
 <style>
-.information-section {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr), 3fr;
-  gap: 2rem;
-  padding: 2rem 3rem;
-  border-top: 1px solid var(--primary-border);
+
+.section-information {
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border-primary);
+}
+
+.section-head p {
+  color: var(--text-muted-foreground);
 }
 
 .section-head h2{
   margin: 0 0 1rem;
   font-size: 2rem;
+  width: max-content;
   font-weight: 600;
 }
 
 .fields {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 2.5rem 3rem;
+  border-bottom: 1px solid var(--border-primary)
 }
 
 .field {
-display: flex;
+  display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--line);
+  padding-top: .75rem;
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .field-label {
@@ -110,7 +118,8 @@ display: flex;
 }
 
 .field-wide {
-  grid-column: 1 / -1; 
+  grid-column: 2 / -1; 
+  padding-bottom: 4rem;
   border-bottom: 1px solid var(--primary-border);
 }
 
