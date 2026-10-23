@@ -36,6 +36,7 @@ const launchStatus = first?.status?.name ?? 'To be announced';
   <!--   class="launch-image" -->
   <!-- /> -->
   <!---->
+
 <section class="section-information">
 
   <div class="fields">
@@ -67,9 +68,48 @@ const launchStatus = first?.status?.name ?? 'To be announced';
       <span class="field-value">Some lovely information about this lovely little shuttle</span>
     </div>
   </div>
-
 </section>
 
+    <section class="section-information">
+      <div class="fields">
+      <div class="section-head">
+      <h2>Launch information</h2>
+      <p>Information about the rocket</p>
+        </div>
+
+      <div class="field">
+          <span class="field-label">Launch Date</span>
+      <span class="field-value">Info</span>
+      </div>
+      <div class="field">
+      <span class="field-label">Time (UTC)</span>
+      <span class="field-value">Info</span>
+      </div>
+      <div class="field">
+      <span class="field-label">Launchpad</span>
+      <span class="field-value">Info</span>
+      </div>
+        <div class="field">
+        <span class="field-label">Country</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">Total pad Launches</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+          <span class="field-label">Latitude</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">Longtitude</span>
+        <span class="field-value">Info</span>
+        </div>
+
+      </div>
+
+
+    </section>
 
   </main>
 </Layout>
@@ -81,6 +121,11 @@ const launchStatus = first?.status?.name ?? 'To be announced';
   border-top: 1px solid var(--border-primary);
 }
 
+.section-head {
+  display: flex;
+  flex-direction: column;
+
+}
 .section-head p {
   color: var(--text-muted-foreground);
 }
@@ -96,7 +141,11 @@ const launchStatus = first?.status?.name ?? 'To be announced';
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 2.5rem 3rem;
-  border-bottom: 1px solid var(--border-primary)
+  /* border-bottom: 1px solid var(--border-primary) */
+}
+
+.fields .field:nth-child(6) {
+  grid-column-start: 2;
 }
 
 .field {
@@ -119,7 +168,7 @@ const launchStatus = first?.status?.name ?? 'To be announced';
 
 .field-wide {
   grid-column: 2 / -1; 
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid var(--primary-border);
 }
 
