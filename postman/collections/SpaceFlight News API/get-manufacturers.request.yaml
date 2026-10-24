@@ -1,0 +1,27 @@
+$kind: http-request
+name: Get Manufacturers (Agencies)
+method: GET
+url: 'https://ll.thespacedevs.com/2.2.0/agencies/'
+order: 1000
+queryParams:
+  - key: agency_type
+    value: ''
+    description: 'Filter by type, e.g. Rocket Manufacturer'
+    disabled: true
+  - key: country_code
+    value: ''
+    description: 'Filter by country code, e.g. USA'
+    disabled: true
+  - key: search
+    value: ''
+    description: Search by agency/manufacturer name
+    disabled: true
+  - key: mode
+    value: detailed
+    description: 'Response detail level: normal or detailed'
+  - key: limit
+    value: '10'
+    description: Number of results to return
+  - key: offset
+    value: '0'
+    description: Pagination offset

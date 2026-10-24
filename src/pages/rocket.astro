@@ -104,6 +104,48 @@ const launchStatus = first?.status?.name ?? 'To be announced';
         <div class="field">
         <span class="field-label">Longtitude</span>
         <span class="field-value">Info</span>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section-information">
+      <div class="fields">
+    <div class="section-head">
+    <h2>Manufactorer</h2>
+     <p>Manufactorer information</p>
+        </div>
+        <div class="field">
+        <span class="field-label">Manufactorer name</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">About the manufactorer</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">Founded</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">Rocket configurations</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">Spacecraft & missions</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">Success rate</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field">
+        <span class="field-label">Country of Origin</span>
+        <span class="field-value">Info</span>
+        </div>
+        <div class="field field-wide">
+        <span class="field-label">Manufactorer description</span>
+          <span class="field-value">Description regarding the Manufactorer</span>
         </div>
 
       </div>
@@ -128,6 +170,8 @@ const launchStatus = first?.status?.name ?? 'To be announced';
 }
 .section-head p {
   color: var(--text-muted-foreground);
+  padding: 0;
+  margin: 0;
 }
 
 .section-head h2{
@@ -169,7 +213,6 @@ const launchStatus = first?.status?.name ?? 'To be announced';
 .field-wide {
   grid-column: 2 / -1; 
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--primary-border);
 }
 
 </style>

@@ -1,0 +1,20 @@
+$kind: http-request
+name: Get Spacecraft Configurations (with Manufacturer)
+method: GET
+url: 'https://ll.thespacedevs.com/2.2.0/config/spacecraft/'
+order: 3000
+queryParams:
+  - key: search
+    value: ''
+    description: Search by spacecraft name
+    disabled: true
+  - key: manufacturer__name
+    value: ''
+    description: Filter by manufacturer name
+    disabled: true
+  - key: limit
+    value: '10'
+    description: Number of results to return
+  - key: offset
+    value: '0'
+    description: Pagination offset
