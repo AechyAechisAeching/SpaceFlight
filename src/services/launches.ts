@@ -49,6 +49,23 @@ export interface SpaceflightLaunch {
   };
 }
 
+export interface Manufacturer {
+  id: number;
+  name: string;
+  type: string;
+  country_code: string;
+  abbrev: string;
+  description: string;
+  founding_year: string | null;
+  logo_url: string | null;
+}
+
+export interface RocketConfigurationDetails {
+  id: number;
+  name: string;
+  manufacturer: Pick<Manufacturer, 'name'> | null;
+}
+
 export async function getAllLaunches(): Promise<SpaceflightLaunch[]> {
   const response = await fetch(
     `${API_URL}/launches/upcoming/?limit=25&ordering=net`,
@@ -64,19 +81,21 @@ export async function getAllLaunches(): Promise<SpaceflightLaunch[]> {
 }
 
 
-export async function getManufacturer() {
+export async function getRocketConfiguration(
+  configurationId: number,
+): Promise<RocketConfigurationDetails> {
   const response = await fetch(
-    `${MANUFACTURER_API_URL}/config/launcher`,
+    `${MANUFACTURER_API_URL}/config/launcher/${configurationId}/?mode=detailed`,
   );
 
   if (!response.ok) {
     throw new Error(
-      `Couldn't retrieve the Manufacturer details ${response.status}`,
+      `Couldn't fetch rocket configuration details: ${response.status}`,
     );
-  };
+  }
 
   const data = await response.json();
-  return data.results;
+  return data as RocketConfigurationDetails;
 
 }
 

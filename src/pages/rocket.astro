@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getLaunches } from '../services/launches.ts';
-
+import { getLaunches, getRocketConfiguration } from '../services/launches.ts';
 const launches = await getLaunches();
 const first = launches[0];
+const configurationId = first?.rocket?.configuration?.id;
+const rocketConfiguration = configurationId
+  ? await getRocketConfiguration(configurationId)
+  : undefined;
 const currentRocket = first?.rocket?.configuration?.name
   ?? first?.rocket?.name ?? 'To be announced';
 const currentAgency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
@@ -11,7 +14,9 @@ const currentVariants = first?.rocket?.configuration?.variant ?? 'No variants av
 const currentLocation = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
 const currentOrbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announced';
 const launchStatus = first?.status?.name ?? 'To be announced';
-
+const currentManufacturer = first?.rocket?.configuration?.manufacturer?.name
+  ?? rocketConfiguration?.manufacturer?.name
+  ?? 'To be announced';
 ---
 
 <Layout>
@@ -112,12 +117,12 @@ const launchStatus = first?.status?.name ?? 'To be announced';
     <section class="section-information">
       <div class="fields">
     <div class="section-head">
-    <h2>Manufactorer</h2>
-     <p>Manufactorer information</p>
+    <h2>Manufacturer</h2>
+     <p>Manufacturer information</p>
         </div>
         <div class="field">
-        <span class="field-label">Manufactorer name</span>
-        <span class="field-value">Info</span>
+        <span class="field-label">Manufacturer name</span>
+          <span class="field-value">{currentManufacturer}</span>
         </div>
         <div class="field">
         <span class="field-label">About the manufactorer</span>
