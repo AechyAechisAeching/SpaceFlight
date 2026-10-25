@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.LAUNCHES_API_URL;
-
+const MANUFACTURER_API_URL = import.meta.env.MANUFACTURER_API_URL;
 interface LaunchStatus {
   name: string;
   abbrev: string;
@@ -61,6 +61,23 @@ export async function getAllLaunches(): Promise<SpaceflightLaunch[]> {
   }
   const data = await response.json();
   return data.results as SpaceflightLaunch[];
+}
+
+
+export async function getManufacturer() {
+  const response = await fetch(
+    `${MANUFACTURER_API_URL}/config/launcher`,
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Couldn't retrieve the Manufacturer details ${response.status}`,
+    );
+  };
+
+  const data = await response.json();
+  return data.results;
+
 }
 
 
