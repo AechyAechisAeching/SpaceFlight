@@ -1,8 +1,11 @@
 ---
 import { getLaunches } from '../services/launches.ts';
+import { Image } from 'astro:assets';
 
 const launches = await getLaunches();
 const first = launches[0];
+console.log('count:', launches.length);
+console.log('image:', first?.image?.image_url);
 const rocket = first?.rocket?.configuration?.name ?? first?.rocket?.name ?? 'To be announced';
 const agency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
 const location = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
@@ -35,10 +38,10 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
 
 
   <div class="image-container">
-  <img
-    src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
-    alt={first ? `Rocket for ${first.name}` : 'Rocket launch'}
-    class="launch-image" />
+<Image class="launch-image" src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
+  width={1200} height={800} widths={[480, 800, 1200]} sizes="(max-width: 900px) 100vw, 55vw"
+  format="webp" quality={65} loading="eager" fetchpriority="high"
+  alt={first ? `Rocket for ${first.name}` : 'Rocket launch'} />
       {first && <p class="countdown" data-launch-date={first.net}>Loading...</p>}
       <a class="schedule-hyper" href="/schedules">More Launches <span aria-hidden="true">→</span></a>
   </div>
@@ -184,3 +187,6 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
 }
 
 </style>
+<script>
+console.log(first?.image?.image_url);
+</script>

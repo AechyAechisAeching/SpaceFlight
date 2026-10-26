@@ -14,7 +14,7 @@ const currentVariants = first?.rocket?.configuration?.variant ?? 'No variants av
 const currentLocation = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
 const currentOrbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announced';
 const launchStatus = first?.status?.name ?? 'To be announced';
-const currentManufacturer = first?.rocket?.configuration?.manufacturer?.name
+const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
   ?? rocketConfiguration?.manufacturer?.name
   ?? 'To be announced';
 ---
@@ -122,7 +122,7 @@ const currentManufacturer = first?.rocket?.configuration?.manufacturer?.name
         </div>
         <div class="field">
         <span class="field-label">Manufacturer name</span>
-          <span class="field-value">{currentManufacturer}</span>
+          <span class="field-value">{currentManufacturerName}</span>
         </div>
         <div class="field">
         <span class="field-label">About the manufactorer</span>
@@ -137,7 +137,7 @@ const currentManufacturer = first?.rocket?.configuration?.manufacturer?.name
         <span class="field-value">Info</span>
         </div>
         <div class="field">
-        <span class="field-label">Spacecraft & missions</span>
+        <span class="field-label">Type</span>
         <span class="field-value">Info</span>
         </div>
         <div class="field">

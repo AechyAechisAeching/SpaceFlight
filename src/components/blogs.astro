@@ -1,4 +1,6 @@
 ---
+
+  import { Image } from 'astro:assets';
   import { getBlogs } from '../services/spaceflight.ts';
   import { formatDate} from '../lib/formatDate.ts';
 
@@ -28,7 +30,7 @@
       <p class="blog-summary">{blog.summary}</p>
     </div>
 
-<img class="blog-image" src={blog.image_url} onerror="this.onerror=null; this.src='/images/unavailable-rocket.svg';" alt="" loading="lazy" />
+<Image class="blog-image" width={300} height={200} format="webp" src={blog.image_url} loading="lazy" onerror="this.onerror=null; this.src='/images/unavailable-rocket.svg';" alt="" />
   </a>
 ))}
 

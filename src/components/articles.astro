@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getArticles }  from '../services/spaceflight.ts';
 import { formatDate } from '../lib/formatDate.ts';
 
@@ -11,7 +12,8 @@ const articles = await getArticles();
 <div class="article-grid">
   {articles.map((article) => (
 <a class="article-card" href={article.url} target="_blank" rel="noopener noreferrer">
-    <img class="article-image" src={article.image_url} onerror="this.onerror=null; this.src='/images/unavailable-rocket.svg';"  alt="" loading="lazy" />
+    <Image class="article-image" width={150} height={100} format="webp" loading="lazy" src={article.image_url} onerror="this.onerror=null; this.src='/images/unavailable-rocket.svg';" alt="" /> 
+    <!-- <img class="article-image" src={article.image_url} decoding="async" onerror="this.onerror=null; this.src='/images/unavailable-rocket.svg';"  alt="" /> -->
 
     <div class="article-content">
       <p class="article-date"> {article.authors[0]?.name ?? ""} · {formatDate(article.published_at)}</p>
