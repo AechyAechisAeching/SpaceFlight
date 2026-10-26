@@ -4,8 +4,6 @@ import { Image } from 'astro:assets';
 
 const launches = await getLaunches();
 const first = launches[0];
-console.log('count:', launches.length);
-console.log('image:', first?.image?.image_url);
 const rocket = first?.rocket?.configuration?.name ?? first?.rocket?.name ?? 'To be announced';
 const agency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
 const location = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';

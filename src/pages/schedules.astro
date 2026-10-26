@@ -26,7 +26,7 @@ const formatLaunchDate = (dateString: string) => {
         <img class="column-image" src={launch.image.image_url} alt="Rocket" loading="lazy" />
         <div class="card-content">
           <p class="card-info">{launch.launch_service_provider?.name} · {formatLaunchDate(launch.net)}</p>
-          <h3>{launch.name}</h3>
+          <h2>{launch.name}</h2>
           <p class="description-control">{launch.mission?.name} · {launch.pad?.location?.name}</p>
           <div class="card-countdown">
             {launch.net && <span class="countdown" data-launch-date={launch.net}>Loading...</span>}
