@@ -30,7 +30,8 @@
       <p class="blog-summary">{blog.summary}</p>
     </div>
 
-  <Image class="blog-image" width={300} sizes="150px" height={200} quality={65} widths={[300, 600]} format="webp"
+  <Image class="blog-image" width={300} sizes="150px" fetchpriority="high"
+ height={200} quality={65} widths={[300, 600]} format="webp"
     src={blog.image_url} loading="lazy" alt="" />
   </a>
 ))}

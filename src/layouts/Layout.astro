@@ -1,9 +1,6 @@
 ---
 import '../styles/global.css';
 
-// import Navbar from "../components/header.astro";
-
-
 const { title = "SpaceFlight" } = Astro.props;
 ---
 
@@ -17,8 +14,6 @@ const { title = "SpaceFlight" } = Astro.props;
 		<title>SpaceFlight</title>
 	</head>
 	<body>
-  <!-- <Header /> -->
-    <!-- Most likely also wrap slot in main depending on how the other pages will look like -->
 		<slot />
 	</body>
 </html>

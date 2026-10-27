@@ -3,11 +3,11 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   image: {
-    domains: [
-
-      'thespacedevs-prod.nyc3.digitaloceanspaces.com',
-      'thespacedevs-dev.nyc3.digitaloceanspaces.com',
-      'spaceflightnewsapi.net',
+    remotePatterns: [
+      { protocol: 'https', hostname: 'thespacedevs-prod.nyc3.digitaloceanspaces.com' },
+      { protocol: 'https', hostname: 'thespacedevs-dev.nyc3.digitaloceanspaces.com' },
+      { protocol: 'https', hostname: 'spaceflightnewsapi.net' },
+      { protocol: 'https', hostname: '**.nasa.gov' },
     ],
   },
 });
