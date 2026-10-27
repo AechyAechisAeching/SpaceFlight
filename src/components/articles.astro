@@ -18,10 +18,7 @@ quality={65} format="webp" loading="lazy" widths={[300, 600, 900]}
 sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 60vw" />
     <div class="article-content">
       <p class="article-date"> {article.authors[0]?.name ?? ""} · {formatDate(article.published_at)}</p>
-      <h2>{article.title}</h2>
-    <div class="card-footer">
-      <span class="hyper">View article ↗︎</span>
-</div>
+      <h3>{article.title}</h3>
     </div>
     </a>
   ))}
@@ -67,22 +64,17 @@ sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 60vw" />
   padding-left: 5px;
 }
 
-.card-footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: auto;
-  padding-top: 12px;
-}
-
 .article-date {
   margin-left: 10px;
   margin-top: 1px;
+  margin-bottom: 0px;
   font-size: var(--card-date);
   color: var(--text-muted-foreground);
 }
 
 .article-content h3 {
   margin-left: 10px;
+  margin-top: 8px;
   font-size: var(--card-header);
   font-weight: 700;
 }

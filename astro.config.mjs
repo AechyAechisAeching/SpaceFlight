@@ -9,6 +9,7 @@ export default defineConfig({
       { protocol: 'https', hostname: 'spaceflightnewsapi.net' },
       { protocol: 'https', hostname: 'spaceflightnow.com' },
       { protocol: 'https', hostname: '**.esa.int' },
+      { protocol: 'https', hostname: 'europeanspaceflight.com' },
       { protocol: 'https', hostname: '**.nasa.gov' },
       // Make sure its subdomain otherwise remove the matching subdomains
       // !TODO: Self explanation
@@ -17,3 +18,4 @@ export default defineConfig({
     ],
   },
 });
+
