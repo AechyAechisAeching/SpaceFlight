@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import { getLaunches, getRocketConfiguration } from '../services/launches.ts';
 const launches = await getLaunches();
 const first = launches[0];
@@ -54,7 +55,8 @@ const longitude = pad?.longitude ?? 'To be announced';
 
     <section class="rocket-features">
       <div class="rocket-visual">
-        {first?.image?.image_url && <img src={first.image.image_url} alt={`Launch vehicle for ${first.name}`} />}
+        {first?.image?.image_url && <Image src={first.image.image_url} width={1200} height={722} widths={[480, 800, 1200]} sizes="(max-width: 900px) 100vw, 55vw"
+  format="webp" quality={65} loading="eager" fetchpriority="high" alt={`Launch vehicle for ${first.name}`} />}
         <p class="visual-caption">{currentLocation}</p>
       </div>
       <div class="rocket-card">
@@ -62,10 +64,10 @@ const longitude = pad?.longitude ?? 'To be announced';
           <h1>{currentRocket}</h1>
           <p class="rocket-status"><span aria-hidden="true">✓</span>{launchStatus}</p>
         </div>
-        <div class="rocket-meta">
+        <ul class="rocket-meta">
           <li><span>Launch provider</span><span>{currentAgency}</span></li>
           <li><span>Variant</span><span>{currentVariants}</span></li>
-        </div>
+        </ul>
         <div class="departure-heading">
           <div><h2>Next departure</h2><p>{formattedLaunchDate} · {launchTime}</p></div>
           <span class="departure-orbit" aria-hidden="true">↗</span>
@@ -277,8 +279,7 @@ const longitude = pad?.longitude ?? 'To be announced';
 
 .rocket-meta { 
   list-style: none;
-  padding-bottom: 30px;
-  padding-top: 20px;
+  padding: 20px 0 30px;
   margin: 0;
   width: 100%;
   border-top: 1px solid var(--border-primary); 
