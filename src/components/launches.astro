@@ -50,7 +50,7 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
 .launch-image {
   width: 100%;
   height: min(620px, 65vw);
-  min-height: 360px;
+  min-height: 280px;
   object-fit: cover;
   border-radius: 10px;
   opacity: 0.6;
@@ -77,7 +77,7 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
 .section-separator {
   border-bottom: 1px solid var(--border-primary); 
   margin-bottom: 25px;
-  width: 600px;
+  width: 100%;
 }
 
 .launch-card h1 {
@@ -182,6 +182,19 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
   padding-bottom: 25px;
   border-bottom: 1px solid var(--border-secundary);
   font-weight: bolder;
+}
+
+@media (max-width: 900px) {
+  .launch-feature { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .launch-description { padding-bottom: 1rem; }
+  .launch-image { height: clamp(280px, 65vw, 520px); }
+  .countdown { top: 0; padding: 1rem 0; font-size: clamp(1.5rem, 7vw, 2.5rem); }
+}
+@media (max-width: 520px) {
+  .launch-details li { align-items: flex-start; gap: .75rem; }
+  .launch-details li span:last-child { max-width: 60%; overflow-wrap: anywhere; }
+  .launch-image { min-height: 240px; }
+  .schedule-hyper { bottom: 1rem; padding: .75rem 1rem; font-size: 1rem; }
 }
 
 </style>

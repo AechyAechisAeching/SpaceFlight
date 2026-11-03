@@ -253,6 +253,24 @@ const longitude = pad?.longitude ?? 'To be announced';
   padding-bottom: 2rem;
 }
 
+@media (max-width: 1000px) {
+  .fields { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .fields .field:nth-child(6) { grid-column-start: auto; }
+  .field-wide { grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .section-information { padding: 1.5rem 0; }
+  .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .section-head, .field-wide { grid-column: 1 / -1; }
+  .section-head h2 { width: auto; font-size: 1.5rem; }
+  .field-label, .field-value { font-size: 1rem; overflow-wrap: anywhere; }
+  .launch-image { max-height: 24rem; margin: 1.5rem auto; }
+}
+@media (max-width: 380px) {
+  .fields { grid-template-columns: minmax(0, 1fr); }
+  .section-head, .field-wide { grid-column: auto; }
+}
+
 </style>
 <script>
   import '../lib/countdown.ts';

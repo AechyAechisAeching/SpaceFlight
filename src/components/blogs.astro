@@ -118,10 +118,20 @@
 }
 
 .blog-image {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 160px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+@media (max-width: 800px) {
+  .blog-card { grid-template-columns: minmax(0, 1fr) minmax(180px, 35%); gap: 1rem; padding: 1rem 0 1.5rem; }
+  .blog-summary { padding-right: 0; }
+}
+@media (max-width: 560px) {
+  .blog-card { grid-template-columns: minmax(0, 1fr); }
+  .blog-image { max-width: none; height: clamp(180px, 55vw, 280px); }
 }
 
 </style>

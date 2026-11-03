@@ -91,6 +91,14 @@ quality={65} format="webp" loading="lazy" widths={[300, 600, 900]}
   text-decoration-color: currentColor;
 }
 
+@media (max-width: 900px) { .article-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 520px) {
+  .article-card { grid-template-columns: minmax(0, 1fr); gap: .75rem; padding: 1rem 0; }
+  .article-image { width: 100%; height: clamp(180px, 55vw, 280px); }
+  .article-content { padding-left: 0; }
+  .article-date, .article-content h3 { margin-left: 0; }
+}
+
 
 
 </style>

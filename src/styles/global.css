@@ -17,6 +17,7 @@
   --card-date: .875rem;
 }
 * {
+  box-sizing: border-box;
   text-decoration: none;
   color: var(--foreground-text);
 }
@@ -31,19 +32,22 @@ body {
   color: var(--foreground-text);
   font-family: var(--font-sans); 
   text-decoration: none;
+  overflow-x: clip;
 }
+
+img { max-width: 100%; }
 
 main {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
 }
 
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 15px;
+  padding: 15px clamp(1rem, 3vw, 2rem);
   background-color: transparent;
 }
 
@@ -81,4 +85,10 @@ main {
   padding-top: 30px;
   padding-bottom: 30px;
  } 
+
+@media (max-width: 700px) {
+  main { padding: 1rem; }
+  .launches-section { padding-top: 1.5rem; }
+  .reports-section, .blogs-section, .article-section { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+}
 

@@ -96,4 +96,11 @@ import '../lib/countdown.ts';
   color: var(--text-muted-foreground);
 }
 
+@media (max-width: 560px) {
+  .column-card { grid-template-columns: minmax(0, 1fr); gap: .75rem; padding: 1rem 0; }
+  .column-image { width: 100%; height: clamp(180px, 55vw, 280px); }
+  .card-content { min-height: 0; }
+  .card-countdown { margin-top: 1rem; flex-wrap: wrap; letter-spacing: .04em; }
+}
+
 </style>
