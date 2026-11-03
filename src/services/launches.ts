@@ -67,7 +67,10 @@ export interface SpaceflightLaunch {
     name?: string;
     variant?: number;
     configuration?: {
+      id?: number;
       name?: string;
+      variant?: string;
+      manufacturer?: Pick<Manufacturer, 'name' | 'description' | 'founding_year' | 'type' | 'country_code'> | null;
     }
   };
   launch_service_provider?: {
@@ -78,8 +81,13 @@ export interface SpaceflightLaunch {
     name?: string;
   };
   pad?: {
+    name?: string;
+    latitude?: string | number | null;
+    longitude?: string | number | null;
+    total_launch_count?: number | null;
     location?: {
       name?: string;
+      country?: string;
     }
   };
   location?: {
@@ -87,6 +95,9 @@ export interface SpaceflightLaunch {
   };
   mission?: {
     name?: string;
+    type?: string;
+    abbrev?: string;
+    description?: string;
     orbit?: {
       name?: string;
     }
@@ -100,7 +111,7 @@ export interface Manufacturer {
   id: number;
   name: string;
   type: string;
-  country_code: string;
+  country_code?: string;
   abbrev: string;
   description: string;
   founding_year: string | null;
@@ -110,7 +121,10 @@ export interface Manufacturer {
 export interface RocketConfigurationDetails {
   id: number;
   name: string;
-  manufacturer: Pick<Manufacturer, 'name'> | null;
+  variant?: string;
+  total_launch_count?: number | null;
+  successful_launches?: number | null;
+  manufacturer: Pick<Manufacturer, 'name' | 'description' | 'founding_year' | 'type' | 'country_code'> | null;
 }
 
 export async function getAllLaunches(): Promise<SpaceflightLaunch[]> {

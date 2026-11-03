@@ -10,13 +10,42 @@ const rocketConfiguration = configurationId
 const currentRocket = first?.rocket?.configuration?.name
   ?? first?.rocket?.name ?? 'To be announced';
 const currentAgency = first?.launch_service_provider?.name ?? first?.agency?.name ?? 'To be announced';
-const currentVariants = first?.rocket?.configuration?.variant ?? 'No variants available';
+const currentVariants = first?.rocket?.configuration?.variant
+  ?? rocketConfiguration?.variant
+  ?? first?.rocket?.variant?.toString()
+  ?? 'No variants available';
 const currentLocation = first?.pad?.location?.name ?? first?.location?.name ?? 'To be announced';
 const currentOrbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announced';
 const launchStatus = first?.status?.name ?? 'To be announced';
-const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
+const manufacturer = first?.rocket?.configuration?.manufacturer ?? rocketConfiguration?.manufacturer;
+const currentManufacturerName = manufacturer?.name
   ?? rocketConfiguration?.manufacturer?.name
   ?? 'To be announced';
+const manufacturerDescription = manufacturer?.description || 'No manufacturer description available.';
+const manufacturerFounded = manufacturer?.founding_year ?? 'Not available';
+const countryCode = manufacturer?.country_code ?? 'Not available';
+const manufacturerType = manufacturer?.type ?? 'To be announced';
+const manufacturerCountry = typeof countryCode === 'string'
+  ? countryCode
+  : countryCode && typeof countryCode === 'object'
+    ? countryCode.alpha_2 ?? countryCode.code ?? countryCode.name ?? 'To be announced'
+    : 'To be announced';
+const totalLaunches = rocketConfiguration?.total_launch_count;
+const successfulLaunches = rocketConfiguration?.successful_launches;
+const successRate = typeof totalLaunches === 'number' && totalLaunches > 0 && typeof successfulLaunches === 'number'
+  ? `${Math.round((successfulLaunches / totalLaunches) * 100)}% (${successfulLaunches}/${totalLaunches})`
+  : 'To be announced';
+const launchDate = first?.net ? new Date(first.net) : undefined;
+const formattedLaunchDate = launchDate && !Number.isNaN(launchDate.getTime())
+  ? launchDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+  : 'To be announced';
+const launchTime = launchDate && !Number.isNaN(launchDate.getTime())
+  ? `${launchDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC`
+  : 'To be announced';
+const mission = first?.mission;
+const pad = first?.pad;
+const latitude = pad?.latitude ?? 'To be announced';
+const longitude = pad?.longitude ?? 'To be announced';
 ---
 
 <Layout>
@@ -24,9 +53,9 @@ const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
     <h1>{currentRocket}</h1>
     <h2>Launch status</h2>
     <p>{launchStatus}</p>
-    <h2>Agency</h2>
+    <h2>Launch provider</h2>
     <p>{currentAgency}</p>
-    <h2>Location</h2>
+    <h2>Launch location</h2>
     <p>{currentLocation}</p>
     <h2>Orbit</h2>
     <p>{currentOrbit}</p>
@@ -35,12 +64,11 @@ const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
     <h2>Departure</h2>
     {first?.net && <p class="countdown" data-launch-date={first.net}>Loading countdown…</p>}
 
-  <!-- <img -->
-  <!--   src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'} -->
-  <!--   alt={first ? `Rocket for ${first.name}` : 'Rocket launch'} -->
-  <!--   class="launch-image" -->
-  <!-- /> -->
-  <!---->
+  <img
+    src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
+    alt={first ? `Rocket for ${first.name}` : 'Rocket launch'}
+    class="launch-image"
+  />
 
 <section class="section-information">
 
@@ -53,24 +81,24 @@ const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
 
     <div class="field">
       <span class="field-label">Mission name</span>
-      <span class="field-value">Info</span>
+      <span class="field-value">{mission?.name ?? 'To be announced'}</span>
     </div>
     <div class="field">
       <span class="field-label">Mission type</span>
-          <span class="field-value">Info</span>
+      <span class="field-value">{mission?.type ?? 'To be announced'}</span>
     </div>
     <div class="field">
       <span class="field-label">Mission orbit</span>
-      <span class="field-value">Info</span>
+      <span class="field-value">{currentOrbit}</span>
     </div>
     <div class="field">
       <span class="field-label">Mission abbrev</span>
-      <span class="field-value">Info</span>
+      <span class="field-value">{mission?.abbrev ?? 'To be announced'}</span>
     </div>
 
     <div class="field field-wide">
       <span class="field-label">Description</span>
-      <span class="field-value">Some lovely information about this lovely little shuttle</span>
+      <span class="field-value">{mission?.description ?? 'No mission description available.'}</span>
     </div>
   </div>
 </section>
@@ -84,31 +112,31 @@ const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
 
       <div class="field">
           <span class="field-label">Launch Date</span>
-      <span class="field-value">Info</span>
+      <span class="field-value">{formattedLaunchDate}</span>
       </div>
       <div class="field">
       <span class="field-label">Time (UTC)</span>
-      <span class="field-value">Info</span>
+      <span class="field-value">{launchTime}</span>
       </div>
       <div class="field">
       <span class="field-label">Launchpad</span>
-      <span class="field-value">Info</span>
+      <span class="field-value">{pad?.name ?? 'To be announced'}</span>
       </div>
         <div class="field">
         <span class="field-label">Country</span>
-        <span class="field-value">Info</span>
+          <span class="field-value">{countryCode}</span>
         </div>
         <div class="field">
-        <span class="field-label">Total pad Launches</span>
-        <span class="field-value">Info</span>
+        <span class="field-label">Total pad launches</span>
+        <span class="field-value">{pad?.total_launch_count ?? 'To be announced'}</span>
         </div>
         <div class="field">
           <span class="field-label">Latitude</span>
-        <span class="field-value">Info</span>
+        <span class="field-value">{latitude}</span>
         </div>
         <div class="field">
-        <span class="field-label">Longtitude</span>
-        <span class="field-value">Info</span>
+        <span class="field-label">Longitude</span>
+        <span class="field-value">{longitude}</span>
 
         </div>
       </div>
@@ -125,32 +153,28 @@ const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
           <span class="field-value">{currentManufacturerName}</span>
         </div>
         <div class="field">
-        <span class="field-label">About the manufactorer</span>
-        <span class="field-value">Info</span>
-        </div>
-        <div class="field">
         <span class="field-label">Founded</span>
-        <span class="field-value">Info</span>
+        <span class="field-value">{manufacturerFounded}</span>
         </div>
         <div class="field">
-        <span class="field-label">Rocket configurations</span>
-        <span class="field-value">Info</span>
+        <span class="field-label">Rocket configuration</span>
+        <span class="field-value">{currentRocket}</span>
         </div>
         <div class="field">
         <span class="field-label">Type</span>
-        <span class="field-value">Info</span>
+        <span class="field-value">{manufacturerType}</span>
         </div>
         <div class="field">
         <span class="field-label">Success rate</span>
-        <span class="field-value">Info</span>
+        <span class="field-value">{successRate}</span>
         </div>
         <div class="field">
         <span class="field-label">Country of Origin</span>
-        <span class="field-value">Info</span>
+        <span class="field-value">{manufacturerCountry}</span>
         </div>
         <div class="field field-wide">
-        <span class="field-label">Manufactorer description</span>
-          <span class="field-value">Description regarding the Manufactorer</span>
+        <span class="field-label">Manufacturer description</span>
+          <span class="field-value">{manufacturerDescription}</span>
         </div>
 
       </div>
@@ -162,6 +186,15 @@ const currentManufacturerName = first?.rocket?.configuration?.manufacturer?.name
 </Layout>
 
 <style>
+
+.launch-image {
+  display: block;
+  width: min(100%, 60rem);
+  max-height: 32rem;
+  margin: 2rem auto;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
 
 .section-information {
   padding: 2rem 1rem;
