@@ -50,25 +50,40 @@ const longitude = pad?.longitude ?? 'To be announced';
 
 <Layout>
   <main>
-    <h1>{currentRocket}</h1>
-    <h2>Launch status</h2>
-    <p>{launchStatus}</p>
-    <h2>Launch provider</h2>
-    <p>{currentAgency}</p>
-    <h2>Launch location</h2>
-    <p>{currentLocation}</p>
-    <h2>Orbit</h2>
-    <p>{currentOrbit}</p>
-    <h2>Variants</h2>
-    <p>{currentVariants}</p>
-    <h2>Departure</h2>
-    {first?.net && <p class="countdown" data-launch-date={first.net}>Loading countdown…</p>}
+    <!-- Rocket information with timer section -->
 
-  <img
-    src={first?.image?.image_url ?? '/images/rocket-placeholder-image.jpg'}
-    alt={first ? `Rocket for ${first.name}` : 'Rocket launch'}
-    class="launch-image"
-  />
+    <section class="rocket-features">
+      <div class="rocket-visual">
+        {first?.image?.image_url && <img src={first.image.image_url} alt={`Launch vehicle for ${first.name}`} />}
+        <p class="visual-caption">{currentLocation}</p>
+      </div>
+      <div class="rocket-card">
+        <div class="rocket-heading">
+          <h1>{currentRocket}</h1>
+          <p class="rocket-status"><span aria-hidden="true">✓</span>{launchStatus}</p>
+        </div>
+        <div class="rocket-meta">
+          <li><span>Launch provider</span><span>{currentAgency}</span></li>
+          <li><span>Variant</span><span>{currentVariants}</span></li>
+        </div>
+        <div class="departure-heading">
+          <div><h2>Next departure</h2><p>{formattedLaunchDate} · {launchTime}</p></div>
+          <span class="departure-orbit" aria-hidden="true">↗</span>
+        </div>
+        {first?.net ? (
+          <div class="featured-countdown" data-countdown data-launch-date={first.net} role="timer" aria-label="Time until launch">
+            <div class="countdown-unit"><span data-countdown-days>—</span><small>Days</small></div>
+            <div class="countdown-unit"><span data-countdown-hours>—</span><small>Hours</small></div>
+            <div class="countdown-unit"><span data-countdown-minutes>—</span><small>Minutes</small></div>
+            <div class="countdown-unit countdown-seconds"><span data-countdown-seconds>—</span><small>Seconds</small></div>
+          </div>
+        ) : <p class="countdown-unavailable">Launch time to be announced</p>}
+      </div>
+    </section>
+
+
+
+
 
 <section class="section-information">
 
@@ -187,6 +202,165 @@ const longitude = pad?.longitude ?? 'To be announced';
 
 <style>
 
+.rocket-features {
+  display: grid;
+  grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+  min-height: 34rem;
+  margin: 0 0 7rem;
+}
+
+.rocket-visual {
+  position: relative; 
+  min-height: 34rem; 
+  overflow: hidden; 
+  background: #17191d;
+}
+
+.rocket-visual::after {
+  content: ''; 
+  position: absolute; 
+  inset: 40% 0 0;
+  background: linear-gradient(transparent, rgb(0 0 0 / .72));
+  pointer-events: none;
+}
+.rocket-visual img {
+  width: 100%; 
+  height: 100%; 
+  position: absolute; 
+  inset: 0;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.visual-caption { 
+  position: absolute; 
+  z-index: 1;
+  left: clamp(1.25rem, 3vw, 2.75rem); 
+  bottom: 1.5rem; 
+  margin: 0; 
+  color: var(--foreground-text);
+  font-size: .95rem; 
+}
+
+.rocket-card {
+  min-width: 0; 
+  padding: clamp(1.5rem, 4vw, 4rem); 
+  align-self: center; 
+}
+
+.rocket-heading { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 1rem; 
+  padding-bottom: 1.5rem; 
+}
+
+.rocket-heading h1 { 
+  margin: 0; 
+  font-size: clamp(2rem, 4vw, 3.25rem); 
+  line-height: 1.05; 
+}
+
+.rocket-status { 
+  display: flex; 
+  align-items: center; 
+  gap: .5rem; 
+  flex: none; 
+  margin: 0; 
+  color: #c5c8cc; 
+}
+
+.rocket-status span { 
+  color: #8de085; 
+}
+
+.rocket-meta { 
+  list-style: none;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  margin: 0;
+  width: 100%;
+  border-top: 1px solid var(--border-primary); 
+}
+
+.rocket-meta li {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 0;
+}
+
+.rocket-meta li span:last-child {
+  color: var(--text-muted-foreground);
+}
+
+.rocket-meta li span:last-child {
+  text-align: right;
+}
+
+.departure-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.departure-heading h2 { 
+  margin: 0 0 .35rem;
+  font-size: 1.45rem;
+  letter-spacing: -.025em;
+}
+
+.departure-heading p { 
+  margin: 0;
+  color: #aeb1b6;
+}
+
+.departure-orbit { 
+  display: grid; 
+  place-items: center; 
+  width: 2.6rem;
+  height: 2.6rem; 
+  font-size: 1.3rem;
+}
+
+.featured-countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .7rem; 
+}
+
+.countdown-unit { 
+  display: flex;
+  min-width: 0;
+  min-height: 8.5rem; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid var(--border-primary);
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-unit span {
+  font-size: clamp(2.7rem, 5vw, 5rem);
+  font-weight: 650; line-height: .98;
+  letter-spacing: -.06em; 
+}
+
+.countdown-unit small {
+  margin-top: .65rem;
+  color: #aeb1b6;
+  font-size: .82rem;
+  text-transform: uppercase;
+}
+
+.countdown-unavailable {
+  margin: 0;
+  color: #d3d5d8; 
+}
+
 .launch-image {
   display: block;
   width: min(100%, 60rem);
@@ -254,11 +428,25 @@ const longitude = pad?.longitude ?? 'To be announced';
 }
 
 @media (max-width: 1000px) {
+  .rocket-features { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .rocket-visual { min-height: 30rem; }
+  .rocket-card { padding: 2rem; }
+  .rocket-heading { align-items: flex-start; flex-direction: column; }
   .fields { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
   .fields .field:nth-child(6) { grid-column-start: auto; }
   .field-wide { grid-column: span 2; }
 }
 @media (max-width: 640px) {
+  .rocket-features { grid-template-columns: 1fr; margin-bottom: 4rem; }
+  .rocket-visual { min-height: 20rem; }
+  .rocket-card { padding: 1.5rem 1rem; }
+  .rocket-heading { padding-bottom: 1rem; flex-direction: row; align-items: center; }
+  .rocket-heading h1 { font-size: clamp(2rem, 9vw, 3rem); }
+  .rocket-status { font-size: .85rem; }
+  .featured-countdown { gap: .4rem; }
+  .countdown-unit { min-height: 6.5rem; }
+  .countdown-unit span { font-size: clamp(2rem, 11vw, 3.5rem); }
+  .countdown-unit small { font-size: .65rem; }
   .section-information { padding: 1.5rem 0; }
   .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .section-head, .field-wide { grid-column: 1 / -1; }
