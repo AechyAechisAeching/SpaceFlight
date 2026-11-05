@@ -32,48 +32,8 @@ Make sure you have the following installed:
 - npm.
 - Git, if you want to clone the repository.
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/AechyAechisAeching/SpaceFlight
-```
-
-### 2. Open the Project
-
-```bash
-cd SpaceFlight
-```
-
-### 3. Install Dependencies
+### Install Dependencies
 
 ```bash
 npm install
-```
-
-### 4. Start the Development Server
-
-```bash
-npm run dev
-```
-
-Astro will display a local development URL in the terminal, usually:
-
-```text
-http://localhost:4321
-```
-
-Open this address in your browser to view the website.
-
-### 5. Build the Project
-
-To generate a production build, run:
-
-```bash
-npm run build
-```
-
-To preview the production build locally, run:
-
-```bash
-npm run preview
 ```
