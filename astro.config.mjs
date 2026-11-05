@@ -2,7 +2,22 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  prefetch: true,
+
+  base: '/',
+  output: 'static',
+  compressHTML: true,
+  trailingSlash: 'never',
+
+  prefetch: {
+
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
+
+
+
+
+
   image: {
     remotePatterns: [
       { protocol: 'https', hostname: 'thespacedevs-prod.nyc3.digitaloceanspaces.com' },
