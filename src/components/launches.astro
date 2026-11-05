@@ -1,6 +1,7 @@
 ---
 import { getLaunches } from '../services/launches.ts';
 import { Image } from 'astro:assets';
+import { getLaunchSlug } from '../lib/launchSlug.ts';
 
 const launches = await getLaunches();
 const first = launches[0];
@@ -30,7 +31,7 @@ const orbit = first?.mission?.orbit?.name ?? first?.orbit?.name ?? 'To be announ
     </div>
 
     <div class="launch-information-section">
-    <a class="launch-more" data-astro-prefetch href={first ? `/rocket/${first.id}` : '/rocket'}>More details <span aria-hidden="true">→</span></a>
+    <a class="launch-more" data-astro-prefetch href={first ? `/rocket/${getLaunchSlug(first)}` : '/rocket'}>More details <span aria-hidden="true">→</span></a>
 </div>
   </div>
 

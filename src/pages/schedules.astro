@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getAllLaunches } from '../services/launches.ts';
 import { formatDate } from '../lib/formatDate.ts';
+import { getLaunchSlug } from '../lib/launchSlug.ts';
 const launches = await getAllLaunches();
 const formatLaunchDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -22,7 +23,7 @@ const formatLaunchDate = (dateString: string) => {
 
     <section class="blogs-section">
     {launches.map((launch) => (
-      <a class="column-card" href={`/rocket/${launch.id}`}>
+      <a class="column-card" href={`/rocket/${getLaunchSlug(launch)}`}>
         <img class="column-image" src={launch.image?.image_url ?? '/images/rocket-placeholder-image.jpg'} alt={`Rocket for ${launch.name}`} loading="lazy" />
         <div class="card-content">
           <p class="card-info">{launch.launch_service_provider?.name} · {formatLaunchDate(launch.net)}</p>

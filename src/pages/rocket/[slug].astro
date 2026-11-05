@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { getAllLaunches, getRocketConfiguration } from '../../services/launches.ts';
+import { getLaunchSlug } from '../../lib/launchSlug.ts';
 
 export async function getStaticPaths() {
   const launches = await getAllLaunches();
@@ -9,7 +10,9 @@ export async function getStaticPaths() {
   return launches
     .filter((launch) => launch.id)
     .map((launch) => ({
-      params: { slug: launch.id },
+      params: {
+        slug: getLaunchSlug(launch),
+      },
       props: { launch },
     }));
 }
