@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import PageLayout from '../../layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import { getAllLaunches, getRocketConfiguration } from '../../services/launches.ts';
 import { getLaunchSlug } from '../../lib/launchSlug.ts';
@@ -63,7 +63,7 @@ const latitude = pad?.latitude ?? 'To be announced';
 const longitude = pad?.longitude ?? 'To be announced';
 ---
 
-<Layout>
+<PageLayout title="Rocket info">
   <main>
 
     <section class="rocket-features">
@@ -207,7 +207,7 @@ const longitude = pad?.longitude ?? 'To be announced';
     </section>
 
   </main>
-</Layout>
+</PageLayout>
 
 <style>
 

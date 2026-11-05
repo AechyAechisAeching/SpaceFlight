@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 import { getAllLaunches } from '../services/launches.ts';
 import { formatDate } from '../lib/formatDate.ts';
 import { getLaunchSlug } from '../lib/launchSlug.ts';
@@ -15,7 +15,7 @@ const formatLaunchDate = (dateString: string) => {
 };
 ---
 
-<Layout>
+<PageLayout title="Scheduled launches">
   <main>
     <h1>Upcoming Launches</h1>
     <p class="title-description">Every rocket on the pad next, with live countdowns. Pick a launch to dive into the rocket, the pad and the mission.</p>
@@ -38,7 +38,7 @@ const formatLaunchDate = (dateString: string) => {
 
     </section>
   </main>
-</Layout>
+</PageLayout>
 <script>
 import '../lib/countdown.ts';
 </script>

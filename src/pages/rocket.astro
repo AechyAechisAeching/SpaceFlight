@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import { getLaunches, getRocketConfiguration } from '../services/launches.ts';
 const launches = await getLaunches();
@@ -49,10 +49,8 @@ const latitude = pad?.latitude ?? 'To be announced';
 const longitude = pad?.longitude ?? 'To be announced';
 ---
 
-<Layout>
+<PageLayout>
   <main>
-    <!-- Rocket information with timer section -->
-
     <section class="rocket-features">
       <div class="rocket-visual">
         {first?.image?.image_url && <Image src={first.image.image_url} width={1200} height={722} widths={[480, 800, 1200]} sizes="(max-width: 900px) 100vw, 55vw"
@@ -200,7 +198,7 @@ const longitude = pad?.longitude ?? 'To be announced';
     </section>
 
   </main>
-</Layout>
+</PageLayout>
 
 <style>
 
