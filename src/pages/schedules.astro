@@ -22,8 +22,8 @@ const formatLaunchDate = (dateString: string) => {
 
     <section class="blogs-section">
     {launches.map((launch) => (
-      <a class="column-card" href="/" rel="noopener noreferrer">
-        <img class="column-image" src={launch.image.image_url} alt="Rocket" loading="lazy" />
+      <a class="column-card" href={`/rocket/${launch.id}`}>
+        <img class="column-image" src={launch.image?.image_url ?? '/images/rocket-placeholder-image.jpg'} alt={`Rocket for ${launch.name}`} loading="lazy" />
         <div class="card-content">
           <p class="card-info">{launch.launch_service_provider?.name} · {formatLaunchDate(launch.net)}</p>
           <h2>{launch.name}</h2>
