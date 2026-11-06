@@ -36,6 +36,17 @@
   </a>
 ))}
 
+<script>
+  document.querySelectorAll<HTMLImageElement>('blog.image').forEach((image) => {
+    image.addEventListener('error', () => {
+      image.removeAttribute('srcset');
+      image.removeAttribute('sizes');
+      image.src = '/images/unavailable-rocket.svg';
+    }, { once: true });
+  });
+</script>
+
+
 <style>
 .blog-card {
   display: grid;
