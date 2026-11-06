@@ -28,10 +28,12 @@ export default defineConfig({
       { protocol: 'https', hostname: '**.esa.int' },
       { protocol: 'https', hostname: 'europeanspaceflight.com' },
       { protocol: 'https', hostname: '**.nasa.gov' },
+      { protocol: 'https', hostname: 'nasaspaceflight.com' },
       // Make sure its subdomain otherwise remove the matching subdomains
       // !TODO: Self explanation
       { protocol: 'http', hostname: 'localhost' },
       { protocol: 'https', hostname: '**.wp.com' },
+      { protocol: 'https', hostname: 'arstechnica.net' },
     ],
   },
 });
